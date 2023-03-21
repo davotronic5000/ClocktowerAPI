@@ -13,7 +13,7 @@ router.get('/ping', async (_req, res) => {
 router.post('/getPdf', async (_req, res) => {
     const controller = new PDFController();
     const response = await controller.getPdf();
-    return res.download(response.filePath);
+    return res.send(response.pdf);
 });
 
 export default router;
