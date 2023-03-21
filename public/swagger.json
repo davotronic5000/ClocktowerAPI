@@ -17,6 +17,18 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"GetPdfResponse": {
+				"properties": {
+					"filePath": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"filePath"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -44,6 +56,25 @@
 							"application/json": {
 								"schema": {
 									"$ref": "#/components/schemas/PingResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/getPdf": {
+			"get": {
+				"operationId": "GetPdf",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetPdfResponse"
 								}
 							}
 						}
