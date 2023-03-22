@@ -1,5 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT&display=swap');
+
+body {
+    margin: 0;
+}
+
 .page {
     page-break-after: always;
     page-break-inside: avoid;
-    background-image: "assets/backgrounds/parchment.jpg";
+    background-image: url('../../assets/backgrounds/parchment.jpg');
+}
+
+.script-container {
+    display: grid;
+    grid-template-columns: [sideBar] 40px [role-col-1] auto [role-col-2] auto;
+    grid-template-rows: [header] 40px [townsfolk] auto [outsiders] auto [minions] auto [demons] auto;
+}
+.sidebar {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: -1;
+    background-image: url('../../assets/backgrounds/BackBase.svg');
+    background-position: top left;
+    border-right: 1px solid grey;
+}
+
+.sidebar-text {
+    grid-column-start: auto;
+    grid-row-start: 2;
+    font-family: 'Old Standard TT', serif;
+    width: 40px;
+    font-style: bold;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    justify-self: center;
+    align-self: center;
 }

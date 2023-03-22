@@ -18,14 +18,134 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"GetPdfResponse": {
+			"Role": {
 				"properties": {
-					"filePath": {
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"edition": {
+						"type": "string"
+					},
+					"team": {
+						"type": "string"
+					},
+					"firstNight": {
+						"type": "number",
+						"format": "double"
+					},
+					"firstNightReminder": {
+						"type": "string"
+					},
+					"otherNight": {
+						"type": "number",
+						"format": "double"
+					},
+					"otherNightReminder": {
+						"type": "string"
+					},
+					"reminders": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"setup": {
+						"type": "boolean"
+					},
+					"ability": {
+						"type": "string"
+					},
+					"image": {
+						"type": "string"
+					},
+					"remindersGlobal": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"colour": {
 						"type": "string"
 					}
 				},
 				"required": [
-					"filePath"
+					"id",
+					"name",
+					"edition",
+					"team",
+					"firstNight",
+					"firstNightReminder",
+					"otherNight",
+					"otherNightReminder",
+					"reminders",
+					"setup",
+					"ability",
+					"image",
+					"remindersGlobal",
+					"colour"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"GetPdfRequest": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"colour": {
+						"type": "string"
+					},
+					"type": {
+						"type": "string",
+						"enum": [
+							"teenseyville",
+							"ravenswood-bluff",
+							"phobos"
+						]
+					},
+					"townsfolk": {
+						"items": {
+							"$ref": "#/components/schemas/Role"
+						},
+						"type": "array"
+					},
+					"outsiders": {
+						"items": {
+							"$ref": "#/components/schemas/Role"
+						},
+						"type": "array"
+					},
+					"minions": {
+						"items": {
+							"$ref": "#/components/schemas/Role"
+						},
+						"type": "array"
+					},
+					"demons": {
+						"items": {
+							"$ref": "#/components/schemas/Role"
+						},
+						"type": "array"
+					},
+					"fabled": {
+						"items": {
+							"$ref": "#/components/schemas/Role"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"name",
+					"colour",
+					"type",
+					"townsfolk",
+					"outsiders",
+					"minions",
+					"demons",
+					"fabled"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -66,7 +186,7 @@
 			}
 		},
 		"/getPdf": {
-			"get": {
+			"post": {
 				"operationId": "GetPdf",
 				"responses": {
 					"200": {
@@ -74,14 +194,25 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/GetPdfResponse"
+									"type": "string",
+									"format": "byte"
 								}
 							}
 						}
 					}
 				},
 				"security": [],
-				"parameters": []
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/GetPdfRequest"
+							}
+						}
+					}
+				}
 			}
 		}
 	},
