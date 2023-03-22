@@ -1,0 +1,5 @@
+.page {
+    page-break-after: always;
+    page-break-inside: avoid;
+    background-image: "assets/backgrounds/parchment.jpg";
+}
