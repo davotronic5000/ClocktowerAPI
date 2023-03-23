@@ -24,18 +24,20 @@ export default class PDFFunctions {
         fs.writeFile(
             templatePath,
             template({
-                helloWorld: 'Hello World',
+                name: 'This is a script',
             }),
             (err) => console.log(err),
         );
-
-        const browser = await puppeteer.launch({ headless: false });
+        //Setting headless to true will stop a browser popping up, false is useful for development
+        const browser = await puppeteer.launch({ headless: true });
         const page = await browser.newPage();
         await page.goto('file:///' + cwd() + templatePath, {
             waitUntil: 'networkidle0',
         });
         const pdf = await page.pdf({ format: 'A4', printBackground: true });
-        //await browser.close();
+
+        //comment out the below line to stop the browser closing for development
+        await browser.close();
 
         return pdf;
     }
