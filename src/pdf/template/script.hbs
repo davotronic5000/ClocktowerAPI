@@ -13,10 +13,31 @@
                 <div class="sidebar-outsider sidebar-text">OUTSIDER</div>
                 <div class="sidebar-minion sidebar-text">MINION</div>
                 <div class="sidebar-demon sidebar-text">DEMON</div>
-                <div class="role-townsfolk"></div>
-                <div class="role-outsider"></div>
-                <div class="role-minion"></div>
-                <div class="role-demon"></div>
+                <div class="role-townsfolk">
+                    <div
+                        class="role-container"
+                        style="grid-template-rows: repeat(7, auto)"
+                    >
+                        {{#each townsfolk}}
+                        <div class="role">
+                            <div class="role-icon">
+                                <img src="{{this.image}}" />
+                            </div>
+                            <div class="role-title">{{this.name}}</div>
+                            <div class="role-description">{{this.ability}}</div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+                <div class="role-outsider">
+                    <div class="role-container"></div>
+                </div>
+                <div class="role-minion">
+                    <div class="role-container"></div>
+                </div>
+                <div class="role-demon">
+                    <div class="role-container"></div>
+                </div>
                 <div class="ntfn">*Not the First Night</div>
             </div>
         </div>

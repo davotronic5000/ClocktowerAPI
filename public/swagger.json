@@ -18,6 +18,22 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"Hatred": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"reason": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"reason"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"Role": {
 				"properties": {
 					"id": {
@@ -69,23 +85,16 @@
 					},
 					"colour": {
 						"type": "string"
+					},
+					"hatred": {
+						"items": {
+							"$ref": "#/components/schemas/Hatred"
+						},
+						"type": "array"
 					}
 				},
 				"required": [
-					"id",
-					"name",
-					"edition",
-					"team",
-					"firstNight",
-					"firstNightReminder",
-					"otherNight",
-					"otherNightReminder",
-					"reminders",
-					"setup",
-					"ability",
-					"image",
-					"remindersGlobal",
-					"colour"
+					"id"
 				],
 				"type": "object",
 				"additionalProperties": false
