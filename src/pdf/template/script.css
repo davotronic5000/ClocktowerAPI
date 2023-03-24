@@ -134,6 +134,48 @@ body {
     padding-bottom: 4;
 }
 
+.role-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-auto-flow: column;
+}
+
+.role {
+    display: grid;
+    grid-template-columns: [icon] 50px [text] auto;
+    grid-template-rows: [title] auto [description] auto;
+}
+
+.role-icon {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: -1;
+    height: 50px;
+    width: 50px;
+}
+
+.role-title {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    font-family: 'Old Standard TT', serif;
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.role-description {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    font-family: 'Old Standard TT', serif;
+    font-size: 9px;
+    padding-bottom: 2px;
+    width: 97%;
+}
+
 .back-page-container {
     display: grid;
     grid-template-columns: [page] 100%;
