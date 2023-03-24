@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Imperial+Script&family=Old+Standard+TT&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT&display=swap');
 
 @font-face {
     font-family: 'Osgard Pro';
@@ -11,13 +11,15 @@ body {
 .page {
     page-break-after: always;
     page-break-inside: avoid;
-    background-image: url('../../assets/backgrounds/parchment.jpg');
 }
 
 .script-container {
     display: grid;
     grid-template-columns: [sideBar] 40px [role-col-1] auto;
     grid-template-rows: [header] 40px [townsfolk] auto [outsiders] auto [minions] auto [demons] auto;
+    height: 1123px;
+    width: 794px;
+    background-image: url('../../assets/backgrounds/parchment.jpg');
 }
 
 .ntfn {
@@ -75,7 +77,7 @@ body {
     writing-mode: vertical-rl;
     text-orientation: upright;
     font-weight: bolder;
-    text-shadow: -1px 1px #ffffff;
+    text-shadow: -2px 2px #ffffff;
     place-self: center;
     margin: 10px;
 }
