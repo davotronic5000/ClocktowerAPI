@@ -7,6 +7,8 @@ import { GetPdfRequest } from '../controllers/types';
 
 export default class PDFFunctions {
     public async createPdf(model: GetPdfRequest): Promise<Buffer> {
+        handlebars.registerHelper('divide', (dividend: number, divisor: number): number => Math.ceil(dividend / divisor));
+
         const templateString = fs
             .readFileSync('src/pdf/template/script.hbs')
             .toString('utf-8');

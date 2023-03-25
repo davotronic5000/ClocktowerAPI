@@ -16,7 +16,7 @@
                 <div class="role-townsfolk">
                     <div
                         class="role-container"
-                        style="grid-template-rows: repeat(7, auto)"
+                        style="grid-template-rows: repeat({{divide townsfolk.length 2}}, auto)"
                     >
                         {{#each townsfolk}}
                         <div class="role">
