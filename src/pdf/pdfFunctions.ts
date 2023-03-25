@@ -13,8 +13,7 @@ export default class PDFFunctions {
             (dividend: number, divisor: number): number =>
                 Math.ceil(dividend / divisor),
         );
-
-        const tempPath = `src/temp/test`;
+        const tempPath = `src/temp/${randomUUID().toString()}`;
         if (!fs.existsSync(tempPath)) {
             fs.mkdirSync(tempPath);
         }
@@ -35,10 +34,10 @@ export default class PDFFunctions {
         fs.writeFile(
             templatePath,
             template({ ...model, coverImage: coverImage }),
-            (err) => console.log(err),
+            () => {},
         );
         //Setting headless to true will stop a browser popping up, false is useful for development
-        const browser = await puppeteer.launch({ headless: false });
+        const browser = await puppeteer.launch({ headless: true });
         const page = await browser.newPage();
         await page.goto('file:///' + cwd() + '/' + templatePath, {
             waitUntil: 'networkidle0',
@@ -46,7 +45,9 @@ export default class PDFFunctions {
         const pdf = await page.pdf({ format: 'A4', printBackground: true });
 
         //comment out the below line to stop the browser closing for development
-        //await browser.close();
+        await browser.close();
+
+        fs.rmSync(tempPath, { recursive: true, force: true });
 
         return pdf;
     }

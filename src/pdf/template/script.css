@@ -15,8 +15,8 @@ body {
 
 .script-container {
     display: grid;
-    grid-template-columns: [sideBar] 40px [role-col-1] auto;
-    grid-template-rows: [header] 40px [townsfolk] auto [outsiders] auto [minions] auto [demons] auto;
+    grid-template-columns: [sideBar] 40px [role-col-1] 1fr;
+    grid-template-rows: [header] 40px [townsfolk] 1fr [outsiders] 1fr [minions] 1fr [demons] 1fr;
     height: 1123px;
     width: 794px;
     background-image: url('../../assets/backgrounds/parchment.jpg');
@@ -143,8 +143,8 @@ body {
 
 .role {
     display: grid;
-    grid-template-columns: [icon] 50px [text] auto;
-    grid-template-rows: [title] auto [description] auto;
+    grid-template-columns: [icon] 50px [text] 1fr;
+    grid-template-rows: [title] 1fr [description] 1fr;
 }
 
 .role-icon {
