@@ -25,6 +25,7 @@ const GetRoleFromRawRole = (rawRole: Role) => {
         setup: rawRole.setup || role.setup,
         ability: rawRole.ability || role.ability,
         hatred: rawRole.hatred || role.hatred,
+        colour: rawRole.colour,
     };
 };
 

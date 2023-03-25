@@ -2,6 +2,8 @@ import { GetPdfRequest } from '../controllers/types';
 import { Role } from '../data/types';
 import sharp from 'sharp';
 import Color from 'color';
+import download from 'image-downloader';
+import { cwd } from 'process';
 
 export default class ImageFunctions {
     public async processRoleImages(
@@ -57,7 +59,13 @@ const colorizeRoles = async (
 
     return await Promise.all(
         roles.map(async (role: Role): Promise<Role> => {
-            const imageFilePath = `${filepath}/${role.id}.png`;
+            let imageFilePath: string;
+            if (!role.image) return role;
+            imageFilePath = `${filepath}/${role.id}.png`;
+
+            if (isUrl(role.image))
+                role.image = await downloadImage(role.image, filepath);
+
             const color = role.colour ? role.colour : defaultColor;
 
             const roleImage = await sharp(role.image)
@@ -72,4 +80,24 @@ const colorizeRoles = async (
             return { ...role, image: imageFilePath };
         }),
     );
+};
+
+const isUrl = (string: string): boolean => {
+    try {
+        new URL(string);
+    } catch (_) {
+        return false;
+    }
+    return true;
+};
+const downloadImage = async (
+    url: string,
+    filepath: string,
+): Promise<string> => {
+    return (
+        await download.image({
+            url,
+            dest: `${cwd()}/${filepath}`,
+        })
+    ).filename;
 };
