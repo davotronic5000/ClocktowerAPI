@@ -59,8 +59,13 @@ const colorizeRoles = async (
         roles.map(async (role: Role): Promise<Role> => {
             const imageFilePath = `${filepath}/${role.id}.png`;
             const color = role.colour ? role.colour : defaultColor;
+
+            const roleImage = await sharp(role.image)
+                .resize({ width: 539, height: 539 })
+                .toBuffer();
+
             await sharp('src/assets/textures/Black.png')
-                .composite([{ input: role.image, blend: 'dest-in' }])
+                .composite([{ input: roleImage, blend: 'dest-in' }])
                 .tint(Color(color).object())
                 .toFile(imageFilePath);
 
