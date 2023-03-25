@@ -60,7 +60,13 @@ const colorizeRoles = async (
     return await Promise.all(
         roles.map(async (role: Role): Promise<Role> => {
             let imageFilePath: string;
-            if (!role.image) return role;
+            if (!role.image) {
+                if (team === 'evil') {
+                    role.image = 'src/assets/roles/default/evil.png';
+                } else {
+                    role.image = 'src/assets/roles/default/good.png';
+                }
+            }
             imageFilePath = `${filepath}/${role.id}.png`;
 
             if (isUrl(role.image))
