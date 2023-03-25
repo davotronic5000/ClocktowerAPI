@@ -1,15 +1,14 @@
-import { Get, Route } from 'tsoa';
-import PDFFunctions from '../pdf/createPdf';
-
-interface GetPdfResponse {
-    pdf: Buffer;
-}
+import { Body, Post, Route } from 'tsoa';
+import PDFFunctions from '../pdf/pdfFunctions';
+import { processScript } from '../script/processScript';
+import { GetPdfRequest, GetPdfResponse } from './types';
 
 @Route('getPdf')
 export default class PDFController {
-    @Get('/')
-    public async getPdf(): Promise<GetPdfResponse> {
+    @Post()
+    public async getPdf(@Body() requestBody: GetPdfRequest): Promise<Buffer> {
+        const pdfInput = processScript(requestBody);
         const functions = new PDFFunctions();
-        return { pdf: await functions.createPdf() };
+        return await functions.createPdf(pdfInput);
     }
 }

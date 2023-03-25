@@ -3,5 +3,13 @@
   "tabWidth": 4,
   "singleQuote": true,
   "arrowParens": "always",
-  "endOfLine": "lf"
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": "*.hbs",
+      "options": {
+        "parser": "html"
+      }
+    }
+  ]
 }

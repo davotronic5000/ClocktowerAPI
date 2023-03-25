@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="../../../src/pdf/template/script.css" />
+    </head>
+    <body>
+        <div class="page">
+            <div class="script-container">
+                <div class="header">{{name}}</div>
+                <div
+                    class="sidebar"
+                    style="background-image: url(../../../{{coverImage}})"
+                ></div>
+                <div class="sidebar-townsfolk sidebar-text">TOWNSFOLK</div>
+                <div class="sidebar-outsider sidebar-text">OUTSIDER</div>
+                <div class="sidebar-minion sidebar-text">MINION</div>
+                <div class="sidebar-demon sidebar-text">DEMON</div>
+                <div class="role-townsfolk">
+                    <div
+                        class="role-container"
+                        style="grid-template-rows: repeat({{divide townsfolk.length 2}}, auto)"
+                    >
+                        {{#each townsfolk}}
+                        <div class="role">
+                            <div
+                                class="role-icon"
+                                style="background-image: url(../../../{{this.image}})"
+                            ></div>
+                            <div class="role-title">{{this.name}}</div>
+                            <div class="role-description">{{this.ability}}</div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+                <div class="role-outsider">
+                    <div
+                        class="role-container"
+                        style="grid-template-rows: repeat({{divide outsiders.length 2}}, 1fr)"
+                    >
+                        {{#each outsiders}}
+                        <div class="role">
+                            <div
+                                class="role-icon"
+                                style="background-image: url(../../../{{this.image}})"
+                            ></div>
+                            <div class="role-title">{{this.name}}</div>
+                            <div class="role-description">{{this.ability}}</div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+                <div class="role-minion">
+                    <div
+                        class="role-container"
+                        style="grid-template-rows: repeat({{divide minions.length 2}}, 1fr)"
+                    >
+                        {{#each minions}}
+                        <div class="role">
+                            <div
+                                class="role-icon"
+                                style="background-image: url(../../../{{this.image}});"
+                            ></div>
+                            <div class="role-title">{{this.name}}</div>
+                            <div class="role-description">{{this.ability}}</div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+                <div class="role-demon">
+                    <div
+                        class="role-container"
+                        style="grid-template-rows: repeat({{divide demons.length 2}}, 1fr)"
+                    >
+                        {{#each demons}}
+                        <div class="role">
+                            <div
+                                class="role-icon"
+                                style="background-image: url(../../../{{this.image}});"
+                            ></div>
+                            <div class="role-title">{{this.name}}</div>
+                            <div class="role-description">{{this.ability}}</div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+                <div class="ntfn">*Not the First Night</div>
+            </div>
+        </div>
+        <div class="page">
+            <div
+                class="back-page-container"
+                style="background-image: url(../../../{{coverImage}});"
+            >
+                <div class="title">{{name}}</div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -2,7 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import swaggerUi from 'swagger-ui-express';
 import Router from './routes';
-import fs from 'fs'
+import fs from 'fs';
 
 const app = express();
 app.use(express.json());
@@ -22,6 +22,6 @@ app.use(
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`App listening on PORT ${port}`));
 
-if (!fs.existsSync("temp")){
-    fs.mkdirSync("temp");
+if (!fs.existsSync('src/temp')) {
+    fs.mkdirSync('src/temp');
 }
