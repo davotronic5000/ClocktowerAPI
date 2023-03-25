@@ -39,7 +39,6 @@ body {
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: -1;
-    background-image: url('../../assets/backgrounds/BackBase.svg');
     background-position: top left;
     border-right: 1px solid grey;
 }
@@ -136,8 +135,10 @@ body {
 
 .role-container {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 1fr;
     grid-auto-flow: column;
+    height: 100%;
+    padding: 10px;
 }
 
 .role {
@@ -153,6 +154,7 @@ body {
     grid-row-end: -1;
     height: 50px;
     width: 50px;
+    background-size: contain;
 }
 
 .role-title {
@@ -182,7 +184,6 @@ body {
     grid-template-rows: [page] 100%;
     height: 1123px;
     width: 794px;
-    background-image: url('../../assets/backgrounds/BackBase.svg');
 }
 
 .title {

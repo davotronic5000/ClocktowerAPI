@@ -1,5 +1,5 @@
 import { Body, Post, Route } from 'tsoa';
-import PDFFunctions from '../pdf/createPdf';
+import PDFFunctions from '../pdf/pdfFunctions';
 import { processScript } from '../script/processScript';
 import { GetPdfRequest, GetPdfResponse } from './types';
 
