@@ -105,5 +105,56 @@
                 <div class="title">{{name}}</div>
             </div>
         </div>
+        <div class="page">
+            <div class="night-container">
+                <div
+                    class="sidebar"
+                    style="background-image: url(../../../{{coverImage}})"
+                >
+                    <div class="sidebar-text" style="padding-top: 70px">
+                        FIRST NIGHT
+                    </div>
+                </div>
+                <div
+                    class="night-order-container"
+                    style="grid-template-rows: repeat({{nightOrder.firstNight.length}}, 1fr)"
+                >
+                    {{#each nightOrder.firstNight}}
+                    <div
+                        class="night-order-role-icon"
+                        style="background-image: url(../../../{{this.image}})"
+                    ></div>
+                    <div class="night-order-role-title">{{this.name}}</div>
+                    <div class="night-order-role-ability">{{this.ability}}</div>
+
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        <div class="page">
+            <div class="night-container">
+                <div
+                    class="sidebar"
+                    style="background-image: url(../../../{{coverImage}})"
+                >
+                    <div class="sidebar-text" style="padding-top: 70px">
+                        OTHER NIGHT
+                    </div>
+                </div>
+                <div
+                    class="night-order-container"
+                    style="grid-template-rows: repeat({{nightOrder.otherNight.length}}, 1fr)"
+                >
+                    {{#each nightOrder.otherNight}}
+                    <div
+                        class="night-order-role-icon"
+                        style="background-image: url(../../../{{this.image}})"
+                    ></div>
+                    <div class="night-order-role-title">{{this.name}}</div>
+                    <div class="night-order-role-ability">{{this.ability}}</div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
     </body>
 </html>
