@@ -3,6 +3,7 @@ import { Role, RoleType } from './types';
 import download from 'image-downloader';
 import { cwd } from 'process';
 import sharp from 'sharp';
+import fs from 'fs';
 
 const getDefaultColor = (roleType: RoleType | undefined) => {
     switch (roleType) {
@@ -43,7 +44,21 @@ const isUrl = (string: string): boolean => {
 };
 
 export default class ImageProcessor {
-    public async colourizeRole(role: Role, tempPath: string): Promise<Role> {
+    public async colourizeRole(
+        role: Role,
+        tempPath: string,
+        preGen: boolean = false,
+        modern: boolean = false,
+    ): Promise<Role> {
+        if (!preGen) {
+            const preGenPath = modern
+                ? 'src/assets/roles/colorised/modern/' + role.id + '.png'
+                : 'src/assets/roles/colorised/classic/' + role.id + '.png';
+
+            if (fs.existsSync(preGenPath))
+                return { ...role, image: preGenPath };
+        }
+
         if (!role.image) {
             if (role.team === 'demon' || role.team === 'minion')
                 role.image = 'src/assets/roles/default/evil.png';
@@ -54,6 +69,11 @@ export default class ImageProcessor {
 
         if (isUrl(role.image))
             role.image = await downloadImage(role.image, tempPath);
+        else {
+            if (modern) {
+                role.image = role.image.replace('classic', 'modern');
+            }
+        }
 
         const roleImage = await sharp(role.image)
             .resize({ width: 539, height: 539 })

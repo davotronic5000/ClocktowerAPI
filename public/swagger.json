@@ -122,6 +122,9 @@
 							"$ref": "#/components/schemas/Role"
 						},
 						"type": "array"
+					},
+					"modern": {
+						"type": "boolean"
 					}
 				},
 				"required": [

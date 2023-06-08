@@ -58,7 +58,12 @@ export default class ScriptProcessor {
         const imageProcessor = new ImageProcessor();
         const colorizedRoles = await Promise.all(
             roles.map(async (role: Role): Promise<Role> => {
-                return await imageProcessor.colourizeRole(role, tempPath);
+                return await imageProcessor.colourizeRole(
+                    role,
+                    tempPath,
+                    false,
+                    model.modern,
+                );
             }),
         );
 

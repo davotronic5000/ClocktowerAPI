@@ -14,7 +14,8 @@
         "dev": "nodemon",
         "predev": "yarn swagger",
         "prebuild": "yarn swagger",
-        "swagger": "tsoa spec"
+        "swagger": "tsoa spec",
+        "preGenImages": "node dist/src/preGenerateImages"
     },
     "dependencies": {
         "color": "^4.2.3",

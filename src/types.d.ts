@@ -3,6 +3,7 @@ export interface GetScriptBody {
     colour: string;
     type: ScriptType;
     roles: Role[];
+    modern?: boolean;
 }
 
 export interface Role {

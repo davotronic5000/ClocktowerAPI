@@ -1503,7 +1503,7 @@
         "reminders": [],
         "setup": true,
         "ability": "The Storyteller can break the game rules & if executed, good wins, even if you are dead. [No evil characters]",
-        "image": "src/assets/roles/classic/athiest.png"
+        "image": "src/assets/roles/classic/atheist.png"
     },
     {
         "id": "cannibal",
