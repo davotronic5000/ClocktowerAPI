@@ -72,13 +72,29 @@ export default class ImageProcessor {
         tempPath: string,
     ): Promise<string> {
         const imagePath = `${tempPath}/cover.png`;
-
-        await sharp('src/assets/backgrounds/parchment.jpg')
+        const parchmentTexture = await sharp(
+            'src/assets/backgrounds/parchment.jpg',
+        )
             .resize({ width: 1505, height: 1502 })
+            .toBuffer();
+        const filigreeTexture = await sharp(
+            'src/assets/backgrounds/BackBase.png',
+        )
+            .resize({ width: 1505, height: 1502 })
+            .toBuffer();
+        const paperTexture = await sharp('src/assets/textures/Black.png')
+            .resize({ width: 1505, height: 1502 })
+            .toBuffer();
+
+        await sharp(paperTexture)
             .composite([
                 {
-                    input: 'src/assets/backgrounds/BackBase.png',
-                    blend: 'color-burn',
+                    input: parchmentTexture,
+                    blend: 'saturate',
+                },
+                {
+                    input: filigreeTexture,
+                    blend: 'colour-burn',
                 },
             ])
             .tint(Color(colour).object())
