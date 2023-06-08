@@ -97,7 +97,7 @@ export default class ImageProcessor {
                     blend: 'colour-burn',
                 },
             ])
-            .tint(Color(colour).object())
+            .tint(Color(colour).lighten(0.2).object())
             .toFile(imagePath);
 
         return imagePath;
