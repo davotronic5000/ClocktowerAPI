@@ -6,17 +6,24 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
-			"PingResponse": {
-				"properties": {
-					"message": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"message"
-				],
-				"type": "object",
-				"additionalProperties": false
+			"ScriptType": {
+				"type": "string",
+				"enum": [
+					"teenseyville",
+					"ravenswood-bluff",
+					"phobos"
+				]
+			},
+			"RoleType": {
+				"type": "string",
+				"enum": [
+					"townsfolk",
+					"outsider",
+					"minion",
+					"demon",
+					"fabled",
+					"traveler"
+				]
 			},
 			"Hatred": {
 				"properties": {
@@ -46,7 +53,7 @@
 						"type": "string"
 					},
 					"team": {
-						"type": "string"
+						"$ref": "#/components/schemas/RoleType"
 					},
 					"firstNight": {
 						"type": "number",
@@ -99,7 +106,7 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"GetPdfRequest": {
+			"GetScriptBody": {
 				"properties": {
 					"name": {
 						"type": "string"
@@ -108,38 +115,9 @@
 						"type": "string"
 					},
 					"type": {
-						"type": "string",
-						"enum": [
-							"teenseyville",
-							"ravenswood-bluff",
-							"phobos"
-						]
+						"$ref": "#/components/schemas/ScriptType"
 					},
-					"townsfolk": {
-						"items": {
-							"$ref": "#/components/schemas/Role"
-						},
-						"type": "array"
-					},
-					"outsiders": {
-						"items": {
-							"$ref": "#/components/schemas/Role"
-						},
-						"type": "array"
-					},
-					"minions": {
-						"items": {
-							"$ref": "#/components/schemas/Role"
-						},
-						"type": "array"
-					},
-					"demons": {
-						"items": {
-							"$ref": "#/components/schemas/Role"
-						},
-						"type": "array"
-					},
-					"fabled": {
+					"roles": {
 						"items": {
 							"$ref": "#/components/schemas/Role"
 						},
@@ -150,11 +128,7 @@
 					"name",
 					"colour",
 					"type",
-					"townsfolk",
-					"outsiders",
-					"minions",
-					"demons",
-					"fabled"
+					"roles"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -175,28 +149,9 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/ping": {
-			"get": {
-				"operationId": "GetMessage",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/PingResponse"
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": []
-			}
-		},
-		"/getPdf": {
+		"/script": {
 			"post": {
-				"operationId": "GetPdf",
+				"operationId": "GetScript",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -217,7 +172,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/GetPdfRequest"
+								"$ref": "#/components/schemas/GetScriptBody"
 							}
 						}
 					}
