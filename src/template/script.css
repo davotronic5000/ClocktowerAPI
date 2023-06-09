@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT&display=swap');
+
+@font-face {
+    font-family: 'Osgard Pro';
+    src: url('./OsgardPro.ttf');
+}
+body {
+    margin: 0;
+}
+
+.page {
+    page-break-after: always;
+    page-break-inside: avoid;
+}
+
+.script-container {
+    display: grid;
+    grid-template-columns: [sideBar] 40px [roles] 1fr;
+    grid-template-rows: [header] 40px auto [footer] 40px;
+    background-image: url('../assets/backgrounds/parchment.jpg');
+    height: 1123px;
+    width: 794px;
+    overflow: hidden;
+}
+
+.role-organiser-container {
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: -1;
+    grid-row-start: 2;
+    grid-row-end: -1;
+    grid-template-columns: [sideBar] 40px [role-col-1] 1fr;
+    grid-template-rows: [townsfolk] min-content [outsiders] min-content [minions] min-content [demons] min-content;
+    max-height: 100%;
+    height: min-content;
+}
+
+.ntfn {
+    grid-column-start: 1;
+    grid-column-end: -1;
+    grid-row-start: -2;
+    grid-row-end: -1;
+    font-family: 'Osgard Pro';
+    font-size: 18px;
+    align-self: end;
+    justify-self: center;
+    padding-bottom: 10px;
+}
+
+.sidebar {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: -1;
+    background-position: top left;
+    border-right: 1px solid grey;
+}
+.sidebar-townsfolk {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.sidebar-outsider {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
+
+.sidebar-minion {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 4;
+    grid-row-end: 5;
+}
+
+.sidebar-demon {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 5;
+    grid-row-end: 6;
+}
+
+.sidebar-text {
+    font-family: 'Old Standard TT', serif;
+    font-size: 20px;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-weight: bolder;
+    text-shadow: -1px 1px #ffffff;
+    place-self: center;
+    margin: 10px;
+}
+
+.header {
+    grid-column-start: 2;
+    grid-column-end: -1;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    justify-self: center;
+    align-self: center;
+    font-family: 'Osgard Pro';
+    font-size: 36px;
+    color: #303030;
+    padding: 2px;
+}
+
+.role-townsfolk {
+    grid-column-start: 2;
+    grid-column-end: -1;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    margin-bottom: 8;
+    padding-bottom: 4;
+    border-bottom: 1px solid grey;
+}
+
+.role-outsider {
+    grid-column-start: 2;
+    grid-column-end: -1;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    margin-bottom: 8;
+    padding-bottom: 4;
+    border-bottom: 1px solid grey;
+}
+
+.role-minion {
+    grid-column-start: 2;
+    grid-column-end: -1;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    margin-bottom: 8;
+    padding-bottom: 4;
+    border-bottom: 1px solid grey;
+}
+
+.role-demon {
+    grid-column-start: 2;
+    grid-column-end: -1;
+    grid-row-start: 5;
+    grid-row-end: 6;
+    margin-bottom: 8;
+    padding-bottom: 4;
+}
+
+.role-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: column;
+    height: 100%;
+    padding: 10px;
+}
+
+.role {
+    display: grid;
+    grid-template-columns: [icon] 50px [text] 1fr;
+    grid-template-rows: [title] 1fr [description] 1fr;
+    padding-bottom: 10px;
+}
+
+.role-icon {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: -1;
+    height: 50px;
+    width: 50px;
+    background-size: contain;
+    align-self: center;
+}
+
+.role-title {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    font-family: 'Old Standard TT', serif;
+    font-weight: bold;
+    font-size: 11px;
+    align-self: end;
+}
+
+.role-description {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    font-family: 'Old Standard TT', serif;
+    font-size: 11px;
+    align-self: start;
+    width: 97%;
+}
+
+.back-page-container {
+    display: grid;
+    grid-template-columns: [page] 100%;
+    grid-template-rows: [page] 100%;
+    height: 1123px;
+    width: 794px;
+}
+
+.title {
+    grid-column-start: 1;
+    grid-column-end: -1;
+    grid-row-start: 1;
+    grid-row-end: -1;
+    justify-self: center;
+    align-self: center;
+    font-family: 'Osgard Pro';
+    font-size: 56px;
+    color: #303030;
+    padding: 2px;
+    text-shadow: -1px 1px #ffffff;
+}
+
+.night-container {
+    display: grid;
+    grid-template-columns: [sidebar] 40px [night-order] 1fr;
+    height: 1123px;
+    width: 794px;
+    background-image: url('../assets/backgrounds/parchment.jpg');
+}
+
+.night-order-container {
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: -1;
+    grid-template-columns: [icon] 30px [name] 1fr [ability] 3fr;
+}
+
+.night-order-role-icon {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    height: 30px;
+    width: 30px;
+    background-size: contain;
+    align-self: center;
+}
+.night-order-role-title {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    font-family: 'Old Standard TT', serif;
+    font-weight: bold;
+    font-size: 11px;
+    padding-left: 5px;
+    align-self: center;
+    justify-self: center;
+}
+
+.night-order-role-ability {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    font-family: 'Old Standard TT', serif;
+    font-size: 11px;
+    align-self: center;
+}

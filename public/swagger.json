@@ -6,14 +6,132 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
-			"PingResponse": {
+			"ScriptType": {
+				"type": "string",
+				"enum": [
+					"teenseyville",
+					"ravenswood-bluff",
+					"phobos"
+				]
+			},
+			"RoleType": {
+				"type": "string",
+				"enum": [
+					"townsfolk",
+					"outsider",
+					"minion",
+					"demon",
+					"fabled",
+					"traveler"
+				]
+			},
+			"Hatred": {
 				"properties": {
-					"message": {
+					"id": {
+						"type": "string"
+					},
+					"reason": {
 						"type": "string"
 					}
 				},
 				"required": [
-					"message"
+					"id",
+					"reason"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Role": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"edition": {
+						"type": "string"
+					},
+					"team": {
+						"$ref": "#/components/schemas/RoleType"
+					},
+					"firstNight": {
+						"type": "number",
+						"format": "double"
+					},
+					"firstNightReminder": {
+						"type": "string"
+					},
+					"otherNight": {
+						"type": "number",
+						"format": "double"
+					},
+					"otherNightReminder": {
+						"type": "string"
+					},
+					"reminders": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"setup": {
+						"type": "boolean"
+					},
+					"ability": {
+						"type": "string"
+					},
+					"image": {
+						"type": "string"
+					},
+					"remindersGlobal": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"colour": {
+						"type": "string"
+					},
+					"hatred": {
+						"items": {
+							"$ref": "#/components/schemas/Hatred"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"id"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"GetScriptBody": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"colour": {
+						"type": "string"
+					},
+					"type": {
+						"$ref": "#/components/schemas/ScriptType"
+					},
+					"roles": {
+						"items": {
+							"$ref": "#/components/schemas/Role"
+						},
+						"type": "array"
+					},
+					"modern": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"name",
+					"colour",
+					"type",
+					"roles"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -34,23 +152,34 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/ping": {
-			"get": {
-				"operationId": "GetMessage",
+		"/script": {
+			"post": {
+				"operationId": "GetScript",
 				"responses": {
 					"200": {
 						"description": "Ok",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/PingResponse"
+									"type": "string",
+									"format": "byte"
 								}
 							}
 						}
 					}
 				},
 				"security": [],
-				"parameters": []
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/GetScriptBody"
+							}
+						}
+					}
+				}
 			}
 		}
 	},
