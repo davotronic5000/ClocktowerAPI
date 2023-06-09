@@ -10,7 +10,7 @@ app.options('*', cors());
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
-app.use(express.static('public'));
+app.use(express.static('public', { dotfiles: 'allow' }));
 app.use(Router);
 
 app.use(
@@ -23,7 +23,7 @@ app.use(
     }),
 );
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8081;
 app.listen(port, () => console.log(`App listening on PORT ${port}`));
 
 if (!fs.existsSync('src/temp')) {
