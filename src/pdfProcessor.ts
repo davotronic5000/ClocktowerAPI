@@ -2,28 +2,40 @@ import { ScriptData } from './types';
 import * as handlebars from 'handlebars';
 import fs from 'fs';
 import * as puppeteer from 'puppeteer';
-import { cwd } from 'process';
+import path from 'path';
 
 export default class PdfProcessor {
     public async createScriptPdf(
         scriptData: ScriptData,
         tempPath: string,
     ): Promise<Buffer> {
+        const templatePath = tempPath + path.sep + 'template.html';
         handlebars.registerHelper(
             'divide',
             (dividend: number, divisor: number): number =>
                 Math.ceil(dividend / divisor),
         );
+        handlebars.registerHelper(
+            'getRelativePath',
+            (filePath: string): string => {
+                if (!filePath) return '';
+                return path.relative(tempPath, filePath);
+            },
+        );
+        const templateFilePath = path.resolve(
+            __dirname,
+            './template/script.hbs',
+        );
         const templateString = fs
-            .readFileSync('src/template/script.hbs')
+            .readFileSync(templateFilePath)
             .toString('utf-8');
         const template = handlebars.compile(templateString);
-        const templatePath = tempPath + '/template.html';
+
         fs.writeFile(templatePath, template(scriptData), () => {});
 
-        const browser = await puppeteer.launch({ headless: true });
+        const browser = await puppeteer.launch({ headless: 'new' });
         const page = await browser.newPage();
-        await page.goto('file:///' + cwd() + '/' + templatePath, {
+        await page.goto(path.resolve('file:///' + __dirname, templatePath), {
             waitUntil: 'networkidle0',
         });
         const pdf = await page.pdf({ format: 'A4', printBackground: true });

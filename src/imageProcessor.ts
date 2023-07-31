@@ -4,6 +4,7 @@ import download from 'image-downloader';
 import { cwd } from 'process';
 import sharp from 'sharp';
 import fs from 'fs';
+import path from 'path';
 
 const getDefaultColor = (roleType: RoleType | undefined) => {
     switch (roleType) {
@@ -52,11 +53,33 @@ export default class ImageProcessor {
     ): Promise<Role> {
         if (!preGen) {
             const preGenPath = modern
-                ? 'src/assets/roles/colorised/modern/' + role.id + '.png'
-                : 'src/assets/roles/colorised/classic/' + role.id + '.png';
+                ? path.resolve(
+                      __dirname,
+                      [
+                          'assets',
+                          'roles',
+                          'colorised',
+                          'modern',
+                          role.id + '.png',
+                      ].join(path.sep),
+                  )
+                : path.resolve(
+                      __dirname,
+                      [
+                          'assets',
+                          'roles',
+                          'colorised',
+                          'classic',
+                          role.id + '.png',
+                      ].join(path.sep),
+                  );
 
-            if (fs.existsSync(preGenPath))
-                return { ...role, image: preGenPath };
+            if (fs.existsSync(preGenPath)) {
+                return {
+                    ...role,
+                    image: preGenPath,
+                };
+            }
         }
 
         if (!role.image) {
@@ -65,7 +88,7 @@ export default class ImageProcessor {
             else role.image = 'src/assets/roles/default/good.png';
         }
         const colour = role.colour ? role.colour : getDefaultColor(role.team);
-        const imageFilePath = `${tempPath}/${role.id}.png`;
+        const imageFilePath = `${tempPath}${path.sep}${role.id}.png`;
 
         if (isUrl(role.image))
             role.image = await downloadImage(role.image, tempPath);
@@ -91,22 +114,22 @@ export default class ImageProcessor {
         colour: string,
         tempPath: string,
     ): Promise<string> {
-        const imagePath = `${tempPath}/cover.png`;
+        const imagePath = path.resolve(__dirname, `${tempPath}/cover.png`);
         const parchmentTexture = await sharp(
             'src/assets/backgrounds/parchment.jpg',
         )
-            .resize({ width: 1505, height: 1502 })
+            .resize({ width: 2492, height: 3780 })
             .toBuffer();
         const filigreeTexture = await sharp(
-            'src/assets/backgrounds/BackBase.png',
+            'src/assets/backgrounds/BackBase-tiled.png',
         )
-            .resize({ width: 1505, height: 1502 })
+            .resize({ width: 2492, height: 3780 })
             .toBuffer();
-        const paperTexture = await sharp('src/assets/textures/Black.png')
-            .resize({ width: 1505, height: 1502 })
+        const greyTexture = await sharp('src/assets/backgrounds/grey.png')
+            .resize({ width: 2492, height: 3780 })
             .toBuffer();
 
-        await sharp(paperTexture)
+        await sharp(greyTexture)
             .composite([
                 {
                     input: parchmentTexture,
@@ -117,7 +140,7 @@ export default class ImageProcessor {
                     blend: 'colour-burn',
                 },
             ])
-            .tint(Color(colour).lighten(0.2).object())
+            .tint(Color(colour).object())
             .toFile(imagePath);
 
         return imagePath;
