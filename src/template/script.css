@@ -108,6 +108,7 @@ body {
     font-size: 36px;
     color: #303030;
     padding: 2px;
+    margin-bottom: 10px;
 }
 
 .role-townsfolk {
@@ -173,6 +174,11 @@ body {
     height: 50px;
     width: 50px;
     background-size: contain;
+}
+
+.role-icon > img {
+    height: 50px;
+    width: 50px;
 }
 
 .role-title {
@@ -244,6 +250,10 @@ body {
     width: 35px;
     background-size: contain;
     align-self: center;
+}
+.night-order-role-icon > img {
+    height: 35px;
+    width: 35px;
 }
 .night-order-role-title {
     grid-column-start: 2;

@@ -2,7 +2,6 @@ import { ScriptData } from './types';
 import * as handlebars from 'handlebars';
 import fs from 'fs';
 import * as puppeteer from 'puppeteer';
-import { cwd } from 'process';
 import path from 'path';
 
 export default class PdfProcessor {
@@ -10,10 +9,18 @@ export default class PdfProcessor {
         scriptData: ScriptData,
         tempPath: string,
     ): Promise<Buffer> {
+        const templatePath = tempPath + path.sep + 'template.html';
         handlebars.registerHelper(
             'divide',
             (dividend: number, divisor: number): number =>
                 Math.ceil(dividend / divisor),
+        );
+        handlebars.registerHelper(
+            'getRelativePath',
+            (filePath: string): string => {
+                if (!filePath) return '';
+                return path.relative(tempPath, filePath);
+            },
         );
         const templateFilePath = path.resolve(
             __dirname,
@@ -23,16 +30,16 @@ export default class PdfProcessor {
             .readFileSync(templateFilePath)
             .toString('utf-8');
         const template = handlebars.compile(templateString);
-        const templatePath = tempPath + '/template.html';
+
         fs.writeFile(templatePath, template(scriptData), () => {});
 
-        const browser = await puppeteer.launch({ headless: false });
+        const browser = await puppeteer.launch({ headless: 'new' });
         const page = await browser.newPage();
         await page.goto(path.resolve('file:///' + __dirname, templatePath), {
             waitUntil: 'networkidle0',
         });
         const pdf = await page.pdf({ format: 'A4', printBackground: true });
-        //await browser.close();
+        await browser.close();
         return pdf;
     }
 }

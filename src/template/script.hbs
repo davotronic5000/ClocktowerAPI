@@ -9,7 +9,7 @@
             <div class="script-container">
                 <div
                     class="sidebar"
-                    style="background-image: url(../../../{{coverImage}})"
+                    style="background-image: url({{getRelativePath coverImage}})"
                 ></div>
                 <div class="header">{{name}}</div>
                 <div class="ntfn">*Not the Fist Night</div>
@@ -25,10 +25,9 @@
                         >
                             {{#each townsfolk}}
                             <div class="role">
-                                <div
-                                    class="role-icon"
-                                    style="background-image: url({{this.image}})"
-                                ></div>
+                                <div class="role-icon">
+                                    <img src="{{this.image}}" />
+                                </div>
                                 <div>
                                     <div class="role-title">{{this.name}}</div>
                                     <div class="role-description">
@@ -46,10 +45,9 @@
                         >
                             {{#each outsiders}}
                             <div class="role">
-                                <div
-                                    class="role-icon"
-                                    style="background-image: url(../../../{{this.image}})"
-                                ></div>
+                                <div class="role-icon">
+                                    <img src="{{this.image}}" />
+                                </div>
                                 <div>
                                     <div class="role-title">{{this.name}}</div>
                                     <div class="role-description">
@@ -67,10 +65,9 @@
                         >
                             {{#each minions}}
                             <div class="role">
-                                <div
-                                    class="role-icon"
-                                    style="background-image: url(../../../{{this.image}})"
-                                ></div>
+                                <div class="role-icon">
+                                    <img src="{{this.image}}" />
+                                </div>
                                 <div>
                                     <div class="role-title">{{this.name}}</div>
                                     <div class="role-description">
@@ -88,10 +85,9 @@
                         >
                             {{#each demons}}
                             <div class="role">
-                                <div
-                                    class="role-icon"
-                                    style="background-image: url(../../../{{this.image}})"
-                                ></div>
+                                <div class="role-icon">
+                                    <img src="{{this.image}}" />
+                                </div>
                                 <div>
                                     <div class="role-title">{{this.name}}</div>
                                     <div class="role-description">
@@ -108,7 +104,7 @@
         <div class="page">
             <div
                 class="back-page-container"
-                style="background-image: url(../../../{{coverImage}})"
+                style="background-image: url({{getRelativePath coverImage}})"
             >
                 <div class="title">{{name}}</div>
             </div>
@@ -117,7 +113,7 @@
             <div class="night-container">
                 <div
                     class="sidebar"
-                    style="background-image: url(../../../{{coverImage}})"
+                    style="background-image: url({{getRelativePath coverImage}})"
                 >
                     <div class="sidebar-text" style="padding-top: 70px">
                         FIRST NIGHT
@@ -128,10 +124,9 @@
                     style="grid-template-rows: repeat({{nightOrder.firstNight.length}}, min-content)"
                 >
                     {{#each nightOrder.firstNight}}
-                    <div
-                        class="night-order-role-icon"
-                        style="background-image: url(../../../{{this.image}})"
-                    ></div>
+                    <div class="night-order-role-icon">
+                        <img src="{{getRelativePath this.image}}" />
+                    </div>
                     <div class="night-order-role-title">{{this.name}}</div>
                     <div class="night-order-role-ability">
                         {{this.firstNightReminder}}
@@ -145,7 +140,7 @@
             <div class="night-container">
                 <div
                     class="sidebar"
-                    style="background-image: url(../../../{{coverImage}})"
+                    style="background-image: url({{getRelativePath coverImage}})"
                 >
                     <div class="sidebar-text" style="padding-top: 70px">
                         OTHER NIGHT
@@ -156,13 +151,12 @@
                     style="grid-template-rows: repeat({{nightOrder.otherNight.length}}, min-content)"
                 >
                     {{#each nightOrder.otherNight}}
-                    <div
-                        class="night-order-role-icon"
-                        style="background-image: url(../../../{{this.image}})"
-                    ></div>
+                    <div class="night-order-role-icon">
+                        <img src="{{getRelativePath this.image}}" />
+                    </div>
                     <div class="night-order-role-title">{{this.name}}</div>
                     <div class="night-order-role-ability">
-                        {{this.otherNightRemin}}
+                        {{this.otherNightReminder}}
                     </div>
                     {{/each}}
                 </div>

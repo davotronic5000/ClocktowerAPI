@@ -55,15 +55,31 @@ export default class ImageProcessor {
             const preGenPath = modern
                 ? path.resolve(
                       __dirname,
-                      './assets/roles/colorised/modern/' + role.id + '.png',
+                      [
+                          'assets',
+                          'roles',
+                          'colorised',
+                          'modern',
+                          role.id + '.png',
+                      ].join(path.sep),
                   )
                 : path.resolve(
                       __dirname,
-                      './assets/roles/colorised/classic/' + role.id + '.png',
+                      [
+                          'assets',
+                          'roles',
+                          'colorised',
+                          'classic',
+                          role.id + '.png',
+                      ].join(path.sep),
                   );
 
-            if (fs.existsSync(preGenPath))
-                return { ...role, image: preGenPath };
+            if (fs.existsSync(preGenPath)) {
+                return {
+                    ...role,
+                    image: preGenPath,
+                };
+            }
         }
 
         if (!role.image) {
@@ -72,7 +88,7 @@ export default class ImageProcessor {
             else role.image = 'src/assets/roles/default/good.png';
         }
         const colour = role.colour ? role.colour : getDefaultColor(role.team);
-        const imageFilePath = `${tempPath}/${role.id}.png`;
+        const imageFilePath = `${tempPath}${path.sep}${role.id}.png`;
 
         if (isUrl(role.image))
             role.image = await downloadImage(role.image, tempPath);
