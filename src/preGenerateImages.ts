@@ -2,9 +2,9 @@ import fs from 'fs';
 import ImageProcessor from './imageProcessor';
 import RoleData from './data/roles.json';
 import { Role } from './types';
-import { image } from 'image-downloader';
+import path from 'path';
 
-const basePath = 'src/assets/roles/colorised';
+const basePath = path.resolve(__dirname, './assets/roles/colorised');
 if (!fs.existsSync(basePath)) fs.mkdirSync(basePath);
 const classicPath = basePath + '/classic';
 if (!fs.existsSync(classicPath)) fs.mkdirSync(classicPath);

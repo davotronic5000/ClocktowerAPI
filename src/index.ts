@@ -4,6 +4,7 @@ import swaggerUi from 'swagger-ui-express';
 import Router from './routes';
 import fs from 'fs';
 import cors from 'cors';
+import path from 'path';
 
 const app = express();
 app.options('*', cors());
@@ -23,9 +24,11 @@ app.use(
     }),
 );
 
-const port = process.env.PORT || 8081;
+const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`App listening on PORT ${port}`));
 
-if (!fs.existsSync('src/temp')) {
-    fs.mkdirSync('src/temp');
+const tempPath = path.resolve(__dirname, './temp');
+
+if (!fs.existsSync(tempPath)) {
+    fs.mkdirSync(tempPath);
 }

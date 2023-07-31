@@ -21,17 +21,19 @@
                     <div class="role-townsfolk">
                         <div
                             class="role-container"
-                            style="grid-template-rows: repeat({{divide townsfolk.length 2}}, 1fr)"
+                            style="grid-template-rows: repeat({{divide townsfolk.length 2}}, auto)"
                         >
                             {{#each townsfolk}}
                             <div class="role">
                                 <div
                                     class="role-icon"
-                                    style="background-image: url(../../../{{this.image}})"
+                                    style="background-image: url({{this.image}})"
                                 ></div>
-                                <div class="role-title">{{this.name}}</div>
-                                <div class="role-description">
-                                    {{this.ability}}
+                                <div>
+                                    <div class="role-title">{{this.name}}</div>
+                                    <div class="role-description">
+                                        {{this.ability}}
+                                    </div>
                                 </div>
                             </div>
                             {{/each}}
@@ -40,7 +42,7 @@
                     <div class="role-outsider">
                         <div
                             class="role-container"
-                            style="grid-template-rows: repeat({{divide outsiders.length 2}}, 1fr)"
+                            style="grid-template-rows: repeat({{divide outsiders.length 2}}, auto)"
                         >
                             {{#each outsiders}}
                             <div class="role">
@@ -48,9 +50,11 @@
                                     class="role-icon"
                                     style="background-image: url(../../../{{this.image}})"
                                 ></div>
-                                <div class="role-title">{{this.name}}</div>
-                                <div class="role-description">
-                                    {{this.ability}}
+                                <div>
+                                    <div class="role-title">{{this.name}}</div>
+                                    <div class="role-description">
+                                        {{this.ability}}
+                                    </div>
                                 </div>
                             </div>
                             {{/each}}
@@ -59,7 +63,7 @@
                     <div class="role-minion">
                         <div
                             class="role-container"
-                            style="grid-template-rows: repeat({{divide minions.length 2}}, 1fr)"
+                            style="grid-template-rows: repeat({{divide minions.length 2}}, auto)"
                         >
                             {{#each minions}}
                             <div class="role">
@@ -67,9 +71,11 @@
                                     class="role-icon"
                                     style="background-image: url(../../../{{this.image}})"
                                 ></div>
-                                <div class="role-title">{{this.name}}</div>
-                                <div class="role-description">
-                                    {{this.ability}}
+                                <div>
+                                    <div class="role-title">{{this.name}}</div>
+                                    <div class="role-description">
+                                        {{this.ability}}
+                                    </div>
                                 </div>
                             </div>
                             {{/each}}
@@ -78,7 +84,7 @@
                     <div class="role-demon">
                         <div
                             class="role-container"
-                            style="grid-template-rows: repeat({{divide demons.length 2}}, 1fr)"
+                            style="grid-template-rows: repeat({{divide demons.length 2}}, auto)"
                         >
                             {{#each demons}}
                             <div class="role">
@@ -86,9 +92,11 @@
                                     class="role-icon"
                                     style="background-image: url(../../../{{this.image}})"
                                 ></div>
-                                <div class="role-title">{{this.name}}</div>
-                                <div class="role-description">
-                                    {{this.ability}}
+                                <div>
+                                    <div class="role-title">{{this.name}}</div>
+                                    <div class="role-description">
+                                        {{this.ability}}
+                                    </div>
                                 </div>
                             </div>
                             {{/each}}
@@ -117,7 +125,7 @@
                 </div>
                 <div
                     class="night-order-container"
-                    style="grid-template-rows: repeat({{nightOrder.firstNight.length}}, 1fr)"
+                    style="grid-template-rows: repeat({{nightOrder.firstNight.length}}, min-content)"
                 >
                     {{#each nightOrder.firstNight}}
                     <div
@@ -125,7 +133,9 @@
                         style="background-image: url(../../../{{this.image}})"
                     ></div>
                     <div class="night-order-role-title">{{this.name}}</div>
-                    <div class="night-order-role-ability">{{this.ability}}</div>
+                    <div class="night-order-role-ability">
+                        {{this.firstNightReminder}}
+                    </div>
 
                     {{/each}}
                 </div>
@@ -143,7 +153,7 @@
                 </div>
                 <div
                     class="night-order-container"
-                    style="grid-template-rows: repeat({{nightOrder.otherNight.length}}, 1fr)"
+                    style="grid-template-rows: repeat({{nightOrder.otherNight.length}}, min-content)"
                 >
                     {{#each nightOrder.otherNight}}
                     <div
@@ -151,7 +161,9 @@
                         style="background-image: url(../../../{{this.image}})"
                     ></div>
                     <div class="night-order-role-title">{{this.name}}</div>
-                    <div class="night-order-role-ability">{{this.ability}}</div>
+                    <div class="night-order-role-ability">
+                        {{this.otherNightRemin}}
+                    </div>
                     {{/each}}
                 </div>
             </div>

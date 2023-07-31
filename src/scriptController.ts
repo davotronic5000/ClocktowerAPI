@@ -4,6 +4,7 @@ import ScriptProcessor from './scriptProcessor';
 import { randomUUID } from 'crypto';
 import fs from 'fs';
 import PdfProcessor from './pdfProcessor';
+import path from 'path';
 
 @Route('script')
 export default class ScriptController {
@@ -11,13 +12,14 @@ export default class ScriptController {
     public async GetScript(
         @Body() requestBody: GetScriptBody,
     ): Promise<Buffer> {
-        const tempPath = `src/temp/${randomUUID().toString()}`;
+        const tempPathRelative = `./temp/${randomUUID().toString()}`;
+        const tempPath = path.resolve(__dirname, tempPathRelative);
         if (!fs.existsSync(tempPath)) fs.mkdirSync(tempPath);
 
         const scriptProcessor = new ScriptProcessor();
         const scriptData = await scriptProcessor.processScript(
             requestBody,
-            tempPath,
+            tempPathRelative,
         );
         const pdfProcessor = new PdfProcessor();
         const scriptPdf = await pdfProcessor.createScriptPdf(
