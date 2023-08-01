@@ -34,8 +34,8 @@ export default class PdfProcessor {
         fs.writeFile(templatePath, template(scriptData), () => {});
         const browser = await puppeteer.launch({ headless: 'new' });
         const page = await browser.newPage();
-        console.log(path.resolve('file:///' + __dirname, templatePath));
-        await page.goto(path.resolve('file:///' + __dirname, templatePath), {
+        console.log('file:///' + path.resolve(__dirname, templatePath));
+        await page.goto('file:///' + path.resolve(__dirname, templatePath), {
             waitUntil: 'networkidle0',
         });
         const pdf = await page.pdf({ format: 'A4', printBackground: true });
