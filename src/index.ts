@@ -28,10 +28,9 @@ app.use(
 
 http.createServer(app).listen(8081, () => 'HTTP Server running on port 8081');
 
-const privateKeyPath =
-    '/home/daveg/ClocktowerAPI/api.clocktower.guru/privkey.pem';
-const certPath = '/home/daveg/ClocktowerAPI/api.clocktower.guru/cert.pem';
-const caPath = '/home/daveg/ClocktowerAPI/api.clocktower.guru/chain.pem';
+const privateKeyPath = '/etc/letsencrypt/live/api.clocktower.guru/privkey.pem';
+const certPath = '/etc/letsencrypt/live/api.clocktower.guru/cert.pem';
+const caPath = '/etc/letsencrypt/live/api.clocktower.guru/chain.pem';
 if (
     fs.existsSync(privateKeyPath) &&
     fs.existsSync(certPath) &&
