@@ -19,6 +19,9 @@ export default class PdfProcessor {
             'getRelativePath',
             (filePath: string): string => {
                 if (!filePath) return '';
+                if (!path.isAbsolute(filePath)) {
+                    filePath = path.resolve(__dirname, filePath);
+                }
                 return path.relative(tempPath, filePath);
             },
         );
