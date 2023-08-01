@@ -120,17 +120,19 @@ export default class ImageProcessor {
         )
             .resize({ width: 2492, height: 3780 })
             .toBuffer();
+        console.log('parchment done');
         const filigreeTexture = await sharp(
-            path.join(__dirname, './assets/backgrounds/BackBase-tiled.png'),
+            path.join(__dirname, '/assets/backgrounds/BackBase-tiled.png'),
         )
             .resize({ width: 2492, height: 3780 })
             .toBuffer();
+        console.log('filigree done');
         const greyTexture = await sharp(
-            path.join(__dirname, './assets/backgrounds/grey.png'),
+            path.join(__dirname, '/assets/backgrounds/grey.png'),
         )
             .resize({ width: 2492, height: 3780 })
             .toBuffer();
-
+        console.log('grey done');
         await sharp(greyTexture)
             .composite([
                 {
@@ -144,6 +146,7 @@ export default class ImageProcessor {
             ])
             .tint(Color(colour).object())
             .toFile(imagePath);
+        console.log('cover image created');
 
         return imagePath;
     }
