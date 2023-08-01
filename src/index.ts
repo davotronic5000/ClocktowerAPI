@@ -5,6 +5,7 @@ import Router from './routes';
 import fs from 'fs';
 import cors from 'cors';
 import path from 'path';
+import { env } from 'process';
 
 const app = express();
 app.options('*', cors());
@@ -29,6 +30,7 @@ app.listen(port, () => console.log(`App listening on PORT ${port}`));
 
 const tempPath = path.resolve(__dirname, './temp');
 
+process.env.VIPS_NOVECTOR = '1';
 if (!fs.existsSync(tempPath)) {
     fs.mkdirSync(tempPath);
 }
