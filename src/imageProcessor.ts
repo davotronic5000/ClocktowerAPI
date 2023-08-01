@@ -114,40 +114,41 @@ export default class ImageProcessor {
         colour: string,
         tempPath: string,
     ): Promise<string> {
-        const imagePath = path.resolve(__dirname, `${tempPath}/cover.png`);
-        const parchmentTexture = await sharp(
-            path.join(__dirname, '/assets/backgrounds/parchment.jpg'),
-        )
-            .resize({ width: 2492, height: 3780 })
-            .toBuffer();
-        console.log('parchment done');
-        const filigreeTexture = await sharp(
-            path.join(__dirname, '/assets/backgrounds/BackBase-tiled.png'),
-        )
-            .resize({ width: 2492, height: 3780 })
-            .toBuffer();
-        console.log('filigree done');
-        const greyTexture = await sharp(
-            path.join(__dirname, '/assets/backgrounds/grey.png'),
-        )
-            .resize({ width: 2492, height: 3780 })
-            .toBuffer();
-        console.log('grey done');
-        await sharp(greyTexture)
-            .composite([
-                {
-                    input: parchmentTexture,
-                    blend: 'saturate',
-                },
-                {
-                    input: filigreeTexture,
-                    blend: 'colour-burn',
-                },
-            ])
-            .tint(Color(colour).object())
-            .toFile(imagePath);
-        console.log('cover image created');
+        try {
+            const imagePath = path.resolve(__dirname, `${tempPath}/cover.png`);
+            const parchmentTexture = await sharp(
+                path.join(__dirname, '/assets/backgrounds/parchment.jpg'),
+            )
+                .resize({ width: 2492, height: 3780 })
+                .toBuffer();
+            const filigreeTexture = await sharp(
+                path.join(__dirname, '/assets/backgrounds/BackBase-tiled.png'),
+            )
+                .resize({ width: 2492, height: 3780 })
+                .toBuffer();
+            const greyTexture = await sharp(
+                path.join(__dirname, '/assets/backgrounds/grey.png'),
+            )
+                .resize({ width: 2492, height: 3780 })
+                .toBuffer();
+            await sharp(greyTexture)
+                .composite([
+                    {
+                        input: parchmentTexture,
+                        blend: 'saturate',
+                    },
+                    {
+                        input: filigreeTexture,
+                        blend: 'colour-burn',
+                    },
+                ])
+                .tint(Color(colour).object())
+                .toFile(imagePath);
+            console.log('cover image created');
 
-        return imagePath;
+            return imagePath;
+        } catch (error) {
+            console.error('Error:', error);
+        }
     }
 }
