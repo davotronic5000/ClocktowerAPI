@@ -32,11 +32,13 @@ const privateKeyPath =
     '/home/daveg/ClocktowerAPI/api.clocktower.guru/privKey.pem';
 const certPath = '/home/daveg/ClocktowerAPI/api.clocktower.guru/cert.pem';
 const caPath = '/home/daveg/ClocktowerAPI/api.clocktower.guru/chain.pem';
+console.log(fs.existsSync(privateKeyPath));
 if (
     fs.existsSync(privateKeyPath) &&
     fs.existsSync(certPath) &&
     fs.existsSync(caPath)
 ) {
+    console.log('starting https');
     const privateKey = fs.readFileSync(privateKeyPath, 'utf8');
     const cert = fs.readFileSync(certPath, 'utf8');
     const ca = fs.readFileSync(caPath, 'utf8');
