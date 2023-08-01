@@ -19,6 +19,7 @@ export default class PdfProcessor {
             'getRelativePath',
             (filePath: string): string => {
                 if (!filePath) return '';
+                console.log(path.relative(tempPath, filePath));
                 return path.relative(tempPath, filePath);
             },
         );
@@ -34,7 +35,6 @@ export default class PdfProcessor {
         fs.writeFile(templatePath, template(scriptData), () => {});
         const browser = await puppeteer.launch({ headless: 'new' });
         const page = await browser.newPage();
-        console.log('file:///' + path.resolve(__dirname, templatePath));
         await page.goto('file:///' + path.resolve(__dirname, templatePath), {
             waitUntil: 'networkidle0',
         });
