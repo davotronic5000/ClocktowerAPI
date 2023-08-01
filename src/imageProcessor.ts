@@ -116,7 +116,7 @@ export default class ImageProcessor {
     ): Promise<string> {
         const imagePath = path.resolve(__dirname, `${tempPath}/cover.png`);
         const parchmentTexture = await sharp(
-            './assets/backgrounds/parchment.jpg',
+            path.join(__dirname, './assets/backgrounds/parchment.jpg'),
         )
             .resize({ width: 2492, height: 3780 })
             .toBuffer();
