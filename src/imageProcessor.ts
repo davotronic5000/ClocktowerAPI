@@ -114,8 +114,8 @@ export default class ImageProcessor {
         colour: string,
         tempPath: string,
     ): Promise<string> {
+        const imagePath = path.resolve(__dirname, `${tempPath}/cover.png`);
         try {
-            const imagePath = path.resolve(__dirname, `${tempPath}/cover.png`);
             const parchmentTexture = await sharp(
                 path.join(__dirname, '/assets/backgrounds/parchment.jpg'),
             )
@@ -145,10 +145,10 @@ export default class ImageProcessor {
                 .tint(Color(colour).object())
                 .toFile(imagePath);
             console.log('cover image created');
-
-            return imagePath;
         } catch (error) {
             console.error('Error:', error);
         }
+
+        return imagePath;
     }
 }
