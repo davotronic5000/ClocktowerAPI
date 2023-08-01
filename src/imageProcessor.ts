@@ -115,6 +115,7 @@ export default class ImageProcessor {
         tempPath: string,
     ): Promise<string> {
         const imagePath = path.resolve(__dirname, `${tempPath}/cover.png`);
+        console.log(path.join(__dirname, '/assets/backgrounds/parchment.jpg'));
         const parchmentTexture = await sharp(
             path.join(__dirname, '/assets/backgrounds/parchment.jpg'),
         )
