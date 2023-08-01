@@ -28,10 +28,13 @@ app.use(
 
 http.createServer(app).listen(8081, () => 'HTTP Server running on port 8081');
 
-const privateKeyPath = '../api.clocktower.guru/privKey.pem';
-const certPath = '../api.clocktower.guru/cert.pem';
-const caPath = '../api.clocktower.guru/chain.pem';
+const privateKeyPath =
+    '/home/daveg/ClocktowerAPI/api.clocktower.guru/privKey.pem';
+const certPath = '/home/daveg/ClocktowerAPI/api.clocktower.guru/cert.pem';
+const caPath = '/home/daveg/ClocktowerAPI/api.clocktower.guru/chain.pem';
 console.log(fs.existsSync(privateKeyPath));
+console.log(fs.existsSync(certPath));
+console.log(fs.existsSync(caPath));
 if (
     fs.existsSync(privateKeyPath) &&
     fs.existsSync(certPath) &&
