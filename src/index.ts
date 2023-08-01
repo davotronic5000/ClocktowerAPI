@@ -5,7 +5,8 @@ import Router from './routes';
 import fs from 'fs';
 import cors from 'cors';
 import path from 'path';
-import { env } from 'process';
+import http from 'http';
+import https from 'https';
 
 const app = express();
 app.options('*', cors());
@@ -25,8 +26,24 @@ app.use(
     }),
 );
 
-const port = process.env.PORT || 8081;
-app.listen(port, () => console.log(`App listening on PORT ${port}`));
+http.createServer(app).listen(8081, () => 'HTTP Server running on port 8081');
+
+const privateKeyPath =
+    '/home/daveg/ClocktowerAPI/api.clocktower.guru/privKey.pem';
+const certPath = '/home/daveg/ClocktowerAPI/api.clocktower.guru/cert.pem';
+const caPath = '/home/daveg/ClocktowerAPI/api.clocktower.guru/chain.pem';
+if (
+    fs.existsSync(privateKeyPath) &&
+    fs.existsSync(certPath) &&
+    fs.existsSync(caPath)
+) {
+    const privateKey = fs.readFileSync(privateKeyPath, 'utf8');
+    const cert = fs.readFileSync(certPath, 'utf8');
+    const ca = fs.readFileSync(caPath, 'utf8');
+    https
+        .createServer({ key: privateKey, cert: cert, ca: ca }, app)
+        .listen(8082, () => 'HTTP Server running on port 8082');
+}
 
 const tempPath = path.resolve(__dirname, './temp');
 
