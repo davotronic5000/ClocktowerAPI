@@ -19,7 +19,6 @@ export default class PdfProcessor {
             'getRelativePath',
             (filePath: string): string => {
                 if (!filePath) return '';
-                console.log(path.relative(tempPath, filePath));
                 return path.relative(tempPath, filePath);
             },
         );
