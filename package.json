@@ -7,7 +7,7 @@
     "license": "MIT",
     "private": true,
     "scripts": {
-        "build": "tsc",
+        "build": "tsc && cp -r src/assets dist/src/ && cp -r src/template dist/src",
         "watch": "tsc -w",
         "typecheck": "tsc --noEmit --watch",
         "start": "node dist/src/index.js",
@@ -15,7 +15,7 @@
         "predev": "yarn swagger",
         "prebuild": "yarn swagger",
         "swagger": "tsoa spec",
-        "preGenImages": "node dist/src/preGenerateImages"
+        "preGenImages": "node dist/src/preGenerateImages && cp -r dist/src/assets/roles/colorised src/assets/roles"
     },
     "dependencies": {
         "color": "^4.2.3",

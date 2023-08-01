@@ -11,7 +11,6 @@ if (!fs.existsSync(classicPath)) fs.mkdirSync(classicPath);
 const modernPath = basePath + '/modern';
 if (!fs.existsSync(modernPath)) fs.mkdirSync(modernPath);
 const roleData: Role[] = RoleData as Role[];
-
 const imageProcessor = new ImageProcessor();
 Promise.all(
     roleData.map(async (role: Role): Promise<Role> => {
