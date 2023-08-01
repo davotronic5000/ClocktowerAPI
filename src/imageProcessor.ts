@@ -115,18 +115,19 @@ export default class ImageProcessor {
         tempPath: string,
     ): Promise<string> {
         const imagePath = path.resolve(__dirname, `${tempPath}/cover.png`);
-        console.log(path.join(__dirname, '/assets/backgrounds/parchment.jpg'));
         const parchmentTexture = await sharp(
             path.join(__dirname, '/assets/backgrounds/parchment.jpg'),
         )
             .resize({ width: 2492, height: 3780 })
             .toBuffer();
         const filigreeTexture = await sharp(
-            './assets/backgrounds/BackBase-tiled.png',
+            path.join(__dirname, './assets/backgrounds/BackBase-tiled.png'),
         )
             .resize({ width: 2492, height: 3780 })
             .toBuffer();
-        const greyTexture = await sharp('./assets/backgrounds/grey.png')
+        const greyTexture = await sharp(
+            path.join(__dirname, './assets/backgrounds/grey.png'),
+        )
             .resize({ width: 2492, height: 3780 })
             .toBuffer();
 
