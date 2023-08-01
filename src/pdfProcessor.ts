@@ -32,21 +32,14 @@ export default class PdfProcessor {
         const template = handlebars.compile(templateString);
 
         fs.writeFile(templatePath, template(scriptData), () => {});
-        try {
-            const browser = await puppeteer.launch({ headless: 'new' });
-            const page = await browser.newPage();
-            console.log('file:///' + __dirname, templatePath);
-            await page.goto(
-                path.resolve('file:///' + __dirname, templatePath),
-                {
-                    waitUntil: 'networkidle0',
-                },
-            );
-            const pdf = await page.pdf({ format: 'A4', printBackground: true });
-            await browser.close();
-        } catch (error) {
-            console.error('Error: ' + error);
-        }
+        const browser = await puppeteer.launch({ headless: 'new' });
+        const page = await browser.newPage();
+        console.log('file:///' + __dirname, templatePath);
+        await page.goto(path.resolve('file:///' + __dirname, templatePath), {
+            waitUntil: 'networkidle0',
+        });
+        const pdf = await page.pdf({ format: 'A4', printBackground: true });
+        await browser.close();
         return pdf;
     }
 }
