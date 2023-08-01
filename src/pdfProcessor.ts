@@ -32,10 +32,11 @@ export default class PdfProcessor {
         const template = handlebars.compile(templateString);
 
         fs.writeFile(templatePath, template(scriptData), () => {});
-
+        console.log('open browser');
         const browser = await puppeteer.launch({ headless: 'new' });
+        console.log('open a new tab');
         const page = await browser.newPage();
-        console.log('file:///' + __dirname, templatePath);
+        console.log('load template');
         await page.goto(path.resolve('file:///' + __dirname, templatePath), {
             waitUntil: 'networkidle0',
         });
