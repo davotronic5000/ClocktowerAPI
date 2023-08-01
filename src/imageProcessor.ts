@@ -84,8 +84,15 @@ export default class ImageProcessor {
 
         if (!role.image) {
             if (role.team === 'demon' || role.team === 'minion')
-                role.image = './assets/roles/default/evil.png';
-            else role.image = './assets/roles/default/good.png';
+                role.image = path.join(
+                    __dirname,
+                    '/assets/roles/default/evil.png',
+                );
+            else
+                role.image = path.join(
+                    __dirname,
+                    '/assets/roles/default/good.png',
+                );
         }
         const colour = role.colour ? role.colour : getDefaultColor(role.team);
         const imageFilePath = `${tempPath}${path.sep}${role.id}.png`;
@@ -102,7 +109,7 @@ export default class ImageProcessor {
             .resize({ width: 539, height: 539 })
             .toBuffer();
 
-        await sharp('./assets/textures/Black.png')
+        await sharp(path.join(__dirname, './assets/textures/Black.png'))
             .composite([{ input: roleImage, blend: 'dest-in' }])
             .tint(Color(colour).object())
             .toFile(imageFilePath);
