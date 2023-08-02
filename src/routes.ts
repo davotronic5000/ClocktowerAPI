@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { NextFunction } from 'express';
 import ScriptController from './scriptController';
 import { GetScriptBody } from './types';
 
@@ -22,5 +22,4 @@ router.post<never, Buffer, GetScriptBody, never>(
         }
     },
 );
-
 export default router;
