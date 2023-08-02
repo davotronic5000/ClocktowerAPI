@@ -11,6 +11,8 @@ body {
 .page {
     page-break-after: always;
     page-break-inside: avoid;
+    height: 1123px;
+    width: 794px;
 }
 
 .script-container {
@@ -19,8 +21,8 @@ body {
     grid-template-rows: [header] min-content [content] auto [footer] 40px;
     background-image: url('../assets/backgrounds/parchment-big.jpg');
     background-size: cover;
-    height: 1123px;
-    width: 794px;
+    height: 100%;
+    width: 100%;
     overflow: hidden;
 }
 
@@ -208,8 +210,8 @@ body {
     display: grid;
     grid-template-columns: [page] 100%;
     grid-template-rows: [page] 100%;
-    height: 1123px;
-    width: 794px;
+    width: 100%;
+    height: 100%;
     background-size: cover;
 }
 
