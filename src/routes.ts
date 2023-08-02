@@ -17,7 +17,6 @@ router.post<never, Buffer, GetScriptBody, never>(
             );
             return res.send(response);
         } catch (error) {
-            console.error('Error: ' + error);
             next(error);
         }
     },

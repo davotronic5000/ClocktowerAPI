@@ -42,7 +42,6 @@ if (
     fs.existsSync(certPath) &&
     fs.existsSync(caPath)
 ) {
-    console.log('starting https');
     const privateKey = fs.readFileSync(privateKeyPath, 'utf8');
     const cert = fs.readFileSync(certPath, 'utf8');
     const ca = fs.readFileSync(caPath, 'utf8');

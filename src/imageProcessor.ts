@@ -102,12 +102,6 @@ export default class ImageProcessor {
             try {
                 role.image = await downloadImage(role.image, tempPath);
             } catch (error) {
-                console.error(
-                    'Error: Unable to download custom role image from:' +
-                        role.image +
-                        ': ' +
-                        error,
-                );
                 throw (
                     'Unable to download custom role image from url: ' +
                     role.image
