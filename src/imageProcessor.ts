@@ -99,7 +99,20 @@ export default class ImageProcessor {
         const imageFilePath = `${tempPath}/${role.id}.png`;
 
         if (isUrl(role.image))
-            role.image = await downloadImage(role.image, tempPath);
+            try {
+                role.image = await downloadImage(role.image, tempPath);
+            } catch (error) {
+                console.error(
+                    'Error: Unable to download custom role image from:' +
+                        role.image +
+                        ': ' +
+                        error,
+                );
+                throw (
+                    'Unable to download custom role image from url: ' +
+                    role.image
+                );
+            }
         else {
             if (modern) {
                 role.image = role.image.replace('classic', 'modern');
