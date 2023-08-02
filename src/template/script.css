@@ -104,6 +104,7 @@ body {
     grid-row-end: 2;
     justify-self: center;
     align-self: center;
+    text-align: center;
     font-family: 'Osgard Pro';
     font-size: 36px;
     color: #303030;
@@ -219,6 +220,7 @@ body {
     grid-row-end: -1;
     justify-self: center;
     align-self: center;
+    text-align: center;
     font-family: 'Osgard Pro';
     font-size: 70px;
     color: #303030;
