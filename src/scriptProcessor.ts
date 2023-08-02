@@ -1,8 +1,10 @@
 import RoleData from './data/roles.json';
 import HatredData from './data/hatred.json';
 import NightInfo from './data/nightInfo.json';
+import FabledData from './data/fabled.json';
 import { GetScriptBody, Role, RoleType, ScriptData } from './types';
 import ImageProcessor from './imageProcessor';
+import { resolveMx } from 'dns';
 
 const roleData: Role[] = RoleData.map((role) => ({
     ...role,
@@ -10,12 +12,24 @@ const roleData: Role[] = RoleData.map((role) => ({
     hatred: HatredData.find((hatred) => hatred.id === role.id)?.hatred,
 }));
 
+const fabledData: Role[] = FabledData.map((role) => ({
+    ...role,
+    team: role.team as RoleType,
+}));
+
 const getRoleFromRawRole = (rawRole: Role): Role => {
     const role = roleData.find(
         (i) => i.id.toLowerCase() === rawRole.id.replace('_', '').toLowerCase(),
     );
+    const fabled = fabledData.find(
+        (i) => i.id.toLowerCase() === rawRole.id.replace('_', '').toLowerCase(),
+    );
 
-    if (!role) return rawRole;
+    if (fabled) return { id: fabled.id, team: fabled.team };
+
+    if (!role) {
+        return rawRole;
+    }
 
     return {
         id: role.id,
@@ -57,14 +71,19 @@ export default class ScriptProcessor {
 
         const imageProcessor = new ImageProcessor();
         const colorizedRoles = await Promise.all(
-            roles.map(async (role: Role): Promise<Role> => {
-                return await imageProcessor.colourizeRole(
-                    role,
-                    tempPath,
-                    false,
-                    model.modern,
-                );
-            }),
+            roles
+                .filter(
+                    (role: Role) =>
+                        role.team !== 'fabled' && role.team !== 'traveler',
+                )
+                .map(async (role: Role): Promise<Role> => {
+                    return await imageProcessor.colourizeRole(
+                        role,
+                        tempPath,
+                        false,
+                        model.modern,
+                    );
+                }),
         );
 
         const nightOrderRoles = colorizedRoles.concat(NightInfo as Role[]);
