@@ -27,6 +27,7 @@ export interface Role {
 export interface Hatred {
     id: string;
     reason: string;
+    image?: string;
 }
 
 export interface ScriptData {

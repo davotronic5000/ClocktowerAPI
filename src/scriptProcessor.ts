@@ -2,7 +2,7 @@ import RoleData from './data/roles.json';
 import HatredData from './data/hatred.json';
 import NightInfo from './data/nightInfo.json';
 import FabledData from './data/fabled.json';
-import { GetScriptBody, Role, RoleType, ScriptData } from './types';
+import { GetScriptBody, Hatred, Role, RoleType, ScriptData } from './types';
 import ImageProcessor from './imageProcessor';
 import { resolveMx } from 'dns';
 
@@ -60,6 +60,27 @@ const sortNightOrder = (a: number, b: number) => {
     return 0;
 };
 
+const processHatred = (role: Role, roles: Role[]): Role => {
+    if (!role.hatred) return role;
+
+    const hatreds = role.hatred.map((hatred: Hatred): Hatred => {
+        const hatedRole = roles.find(({ id }) => {
+            id.toLowerCase() === hatred.id.toLowerCase();
+        });
+
+        return {
+            id: hatred.id,
+            reason: hatred.reason,
+            image: hatedRole?.image,
+        };
+    });
+
+    return {
+        ...role,
+        hatred: hatreds,
+    };
+};
+
 export default class ScriptProcessor {
     public async processScript(
         model: GetScriptBody,
@@ -86,20 +107,26 @@ export default class ScriptProcessor {
                 }),
         );
 
-        const nightOrderRoles = colorizedRoles.concat(NightInfo as Role[]);
+        const colorizedRolesWithHatred = colorizedRoles.map((role) =>
+            processHatred(role, colorizedRoles),
+        );
+
+        const nightOrderRoles = colorizedRolesWithHatred.concat(
+            NightInfo as Role[],
+        );
 
         return {
             ...model,
-            townsfolk: colorizedRoles.filter(
+            townsfolk: colorizedRolesWithHatred.filter(
                 (role: Role) => role.team === 'townsfolk',
             ),
-            outsiders: colorizedRoles.filter(
+            outsiders: colorizedRolesWithHatred.filter(
                 (role: Role) => role.team === 'outsider',
             ),
-            minions: colorizedRoles.filter(
+            minions: colorizedRolesWithHatred.filter(
                 (role: Role) => role.team === 'minion',
             ),
-            demons: colorizedRoles.filter(
+            demons: colorizedRolesWithHatred.filter(
                 (role: Role) => role.team === 'demon',
             ),
             nightOrder: {
