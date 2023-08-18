@@ -30,7 +30,7 @@ const downloadImage = async (
     return (
         await download.image({
             url,
-            dest: `${cwd()}/${filepath}`,
+            dest: filepath,
         })
     ).filename;
 };
@@ -95,10 +95,18 @@ export default class ImageProcessor {
                 );
         }
         const colour = role.colour ? role.colour : getDefaultColor(role.team);
-        const imageFilePath = `${tempPath}${path.sep}${role.id}.png`;
+        tempPath = path.resolve(__dirname, tempPath);
+        const imageFilePath = `${tempPath}/${role.id}.png`;
 
         if (isUrl(role.image))
-            role.image = await downloadImage(role.image, tempPath);
+            try {
+                role.image = await downloadImage(role.image, tempPath);
+            } catch (error) {
+                throw (
+                    'Unable to download custom role image from url: ' +
+                    role.image
+                );
+            }
         else {
             if (modern) {
                 role.image = role.image.replace('classic', 'modern');

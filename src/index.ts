@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { ErrorRequestHandler } from 'express';
 import morgan from 'morgan';
 import swaggerUi from 'swagger-ui-express';
 import Router from './routes';
@@ -8,14 +8,18 @@ import path from 'path';
 import http from 'http';
 import https from 'https';
 
+const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
+    console.error('Error: ' + err);
+    res.status(500).send({ message: err });
+    next(err);
+};
+
 const app = express();
 app.options('*', cors());
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(express.static('public', { dotfiles: 'allow' }));
-app.use(Router);
-
 app.use(
     '/docs',
     swaggerUi.serve,
@@ -25,13 +29,14 @@ app.use(
         },
     }),
 );
+app.use(Router);
+app.use(errorHandler);
 
 http.createServer(app).listen(8081, () => 'HTTP Server running on port 8081');
 
-const privateKeyPath =
-    '/home/daveg/ClocktowerAPI/api.clocktower.guru/privKey.pem';
-const certPath = '/home/daveg/ClocktowerAPI/api.clocktower.guru/cert.pem';
-const caPath = '/home/daveg/ClocktowerAPI/api.clocktower.guru/chain.pem';
+const privateKeyPath = '/etc/letsencrypt/live/api.clocktower.guru/privkey.pem';
+const certPath = '/etc/letsencrypt/live/api.clocktower.guru/cert.pem';
+const caPath = '/etc/letsencrypt/live/api.clocktower.guru/chain.pem';
 if (
     fs.existsSync(privateKeyPath) &&
     fs.existsSync(certPath) &&
