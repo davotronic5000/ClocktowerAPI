@@ -6,9 +6,23 @@
     </head>
     <body>
         <div class="page">
-            {{#each roles}}
-            <div><img src="{{this.image}}" /></div>
-            {{/each}}
+            <div
+                class="tokens"
+                style="grid-gap: {{tokenGutter}}px; grid-template-columns: repeat(auto-fill, {{largeTokenSize}}px);"
+            >
+                {{#each roles}}
+                <div
+                    class="token-holder"
+                    style="width: {{../largeTokenSize}}px; height: {{../largeTokenSize}}px"
+                >
+                    <img
+                        src="{{this.image}}"
+                        width="{{../largeTokenSize}}px"
+                        height="{{../largeTokenSize}}px"
+                    />
+                </div>
+                {{/each}}
+            </div>
         </div>
     </body>
 </html>

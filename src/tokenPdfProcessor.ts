@@ -30,13 +30,13 @@ export default class GetTokensPdfProcessor {
         const template = handlebars.compile(templateString);
 
         fs.writeFile(templatePath, template(tokenData), () => {});
-        const browser = await puppeteer.launch({ headless: 'new' });
+        const browser = await puppeteer.launch({ headless: false });
         const page = await browser.newPage();
         await page.goto('file:///' + path.resolve(__dirname, templatePath), {
             waitUntil: 'networkidle0',
         });
         const pdf = await page.pdf({ format: 'A4', printBackground: true });
-        await browser.close();
+        // await browser.close();
         return pdf;
     }
 }

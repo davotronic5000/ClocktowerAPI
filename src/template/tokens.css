@@ -13,4 +13,15 @@ body {
     page-break-inside: avoid;
     height: 1123px;
     width: 794px;
+    background-image: url('../assets/backgrounds/parchment.jpg');
+}
+
+.tokens {
+    display: grid;
+    width: 100%;
+}
+
+.token-holder {
+    border: 5px solid black;
+    border-radius: 50%;
 }

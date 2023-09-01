@@ -191,6 +191,18 @@
 					},
 					"modern": {
 						"type": "boolean"
+					},
+					"roleTokenSize": {
+						"type": "number",
+						"format": "double"
+					},
+					"reminderTokenSize": {
+						"type": "number",
+						"format": "double"
+					},
+					"tokenGutter": {
+						"type": "number",
+						"format": "double"
 					}
 				},
 				"required": [

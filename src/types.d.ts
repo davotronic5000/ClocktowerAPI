@@ -9,6 +9,9 @@ export interface GetScriptBody {
 export interface GetTokensBody {
     roles: TokenRole[];
     modern?: boolean;
+    roleTokenSize?: number;
+    reminderTokenSize?: number;
+    tokenGutter?: number;
 }
 
 export interface Role {
@@ -58,6 +61,13 @@ export interface ScriptData {
 
 export interface TokenData {
     roles: TokenRole[];
+    roleTokenSize: number;
+    reminderTokenSize: number;
+    columnSize: number;
+    columnAmount: number;
+    tokenGutter: number;
+    largeTokenSize: number;
+    smallTokenSize: number;
 }
 
 export interface NightOrder {

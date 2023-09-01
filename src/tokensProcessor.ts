@@ -2,6 +2,7 @@ import RoleData from './data/roles.json';
 import FabledData from './data/fabled.json';
 import { RoleType, GetTokensBody, TokenRole, TokenData } from './types';
 import ImageProcessor from './imageProcessor';
+import { defaultTokenSize, pageSize } from './global-variables';
 
 const roleData: TokenRole[] = RoleData.map((role) => ({
     ...role,
@@ -40,13 +41,34 @@ const getRoleFromRawRole = (rawRole: TokenRole): TokenRole => {
     };
 };
 
+const workOutLayoutSizes = (
+    roleTokenSize = defaultTokenSize.role,
+    reminderTokenSize = defaultTokenSize.reminder,
+    tokenGutter = defaultTokenSize.gutter,
+) => {
+    const columnAmount = 4;
+    const largeTokenSize =
+        roleTokenSize > reminderTokenSize ? roleTokenSize : reminderTokenSize;
+    const smallTokenSize =
+        reminderTokenSize < roleTokenSize ? reminderTokenSize : roleTokenSize;
+    const columnSize = largeTokenSize;
+    return {
+        roleTokenSize,
+        reminderTokenSize,
+        columnAmount,
+        columnSize,
+        tokenGutter,
+        largeTokenSize,
+        smallTokenSize,
+    };
+};
+
 export default class TokensProcessor {
     public async processTokens(
         model: GetTokensBody,
         tempPath: string,
     ): Promise<TokenData> {
         const roles = model.roles.map((rawRole) => getRoleFromRawRole(rawRole));
-
         const imageProcessor = new ImageProcessor();
         const colorizedRoles = await Promise.all(
             roles
@@ -64,8 +86,11 @@ export default class TokensProcessor {
                 }),
         );
 
+        const layoutSizes = workOutLayoutSizes();
+
         return {
             roles: colorizedRoles,
+            ...layoutSizes,
         };
     }
 }
