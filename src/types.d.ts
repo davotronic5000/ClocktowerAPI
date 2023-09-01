@@ -2,26 +2,36 @@ export interface GetScriptBody {
     name: string;
     colour: string;
     type: ScriptType;
-    roles: Role[];
+    roles: ScriptRole[];
     modern?: boolean;
 }
 
 export interface Role {
     id: string;
     name?: string;
-    edition?: string;
     team?: RoleType;
     firstNight?: number;
-    firstNightReminder?: string;
     otherNight?: number;
-    otherNightReminder?: string;
-    reminders?: string[];
-    setup?: boolean;
-    ability?: string;
     image?: string;
-    remindersGlobal?: string[];
     colour?: string;
+}
+
+export interface ScriptRole extends Role {
+    firstNightReminder?: string;
+    otherNightReminder?: string;
+    ability?: string;
     hatred?: Hatred[];
+}
+
+export interface TokenReminder {
+    text: string;
+    count: number;
+}
+
+export interface TokenRole extends Role {
+    reminders?: TokenReminder[];
+    setup?: boolean;
+    count: number;
 }
 
 export interface Hatred {
@@ -33,17 +43,21 @@ export interface ScriptData {
     name: string;
     colour: string;
     type: ScriptType;
-    townsfolk: Role[];
-    outsiders: Role[];
-    minions: Role[];
-    demons: Role[];
+    townsfolk: ScriptRole[];
+    outsiders: ScriptRole[];
+    minions: ScriptRole[];
+    demons: ScriptRole[];
     nightOrder: NightOrder;
     coverImage: string;
 }
 
+export interface TokenData {
+    roles: TokenRole[];
+}
+
 export interface NightOrder {
-    firstNight: Role[];
-    otherNight: Role[];
+    firstNight: ScriptRole[];
+    otherNight: ScriptRole[];
 }
 
 export type ScriptType = 'teenseyville' | 'ravenswood-bluff' | 'phobos';

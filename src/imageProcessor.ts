@@ -1,5 +1,5 @@
 import Color from 'color';
-import { Role, RoleType } from './types';
+import { ScriptRole, RoleType } from './types';
 import download from 'image-downloader';
 import { cwd } from 'process';
 import sharp from 'sharp';
@@ -46,11 +46,11 @@ const isUrl = (string: string): boolean => {
 
 export default class ImageProcessor {
     public async colourizeRole(
-        role: Role,
+        role: ScriptRole,
         tempPath: string,
         preGen: boolean = false,
         modern: boolean = false,
-    ): Promise<Role> {
+    ): Promise<ScriptRole> {
         if (!preGen) {
             const preGenPath = modern
                 ? path.resolve(
