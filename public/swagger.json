@@ -14,17 +14,6 @@
 					"phobos"
 				]
 			},
-			"RoleType": {
-				"type": "string",
-				"enum": [
-					"townsfolk",
-					"outsider",
-					"minion",
-					"demon",
-					"fabled",
-					"traveler"
-				]
-			},
 			"Hatred": {
 				"properties": {
 					"id": {
@@ -41,15 +30,23 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Role": {
+			"RoleType": {
+				"type": "string",
+				"enum": [
+					"townsfolk",
+					"outsider",
+					"minion",
+					"demon",
+					"fabled",
+					"traveler"
+				]
+			},
+			"ScriptRole": {
 				"properties": {
 					"id": {
 						"type": "string"
 					},
 					"name": {
-						"type": "string"
-					},
-					"edition": {
 						"type": "string"
 					},
 					"team": {
@@ -59,38 +56,23 @@
 						"type": "number",
 						"format": "double"
 					},
-					"firstNightReminder": {
-						"type": "string"
-					},
 					"otherNight": {
 						"type": "number",
 						"format": "double"
 					},
-					"otherNightReminder": {
-						"type": "string"
-					},
-					"reminders": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
-					},
-					"setup": {
-						"type": "boolean"
-					},
-					"ability": {
-						"type": "string"
-					},
 					"image": {
 						"type": "string"
 					},
-					"remindersGlobal": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
-					},
 					"colour": {
+						"type": "string"
+					},
+					"firstNightReminder": {
+						"type": "string"
+					},
+					"otherNightReminder": {
+						"type": "string"
+					},
+					"ability": {
 						"type": "string"
 					},
 					"hatred": {
@@ -119,7 +101,7 @@
 					},
 					"roles": {
 						"items": {
-							"$ref": "#/components/schemas/Role"
+							"$ref": "#/components/schemas/ScriptRole"
 						},
 						"type": "array"
 					},
@@ -191,7 +173,8 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"type": "string"
+									"type": "string",
+									"format": "byte"
 								}
 							}
 						}
