@@ -5,6 +5,10 @@
         <link rel="stylesheet" href="../../../src/template/tokens.css" />
     </head>
     <body>
-        <div class="page"></div>
+        <div class="page">
+            {{#each roles}}
+            <div><img src="{{this.image}}" /></div>
+            {{/each}}
+        </div>
     </body>
 </html>

@@ -1,14 +1,14 @@
 import RoleData from './data/roles.json';
-import {
-    ScriptRole,
-    RoleType,
-    GetTokensBody,
-    TokenRole,
-    TokenData,
-} from './types';
+import FabledData from './data/fabled.json';
+import { RoleType, GetTokensBody, TokenRole, TokenData } from './types';
 import ImageProcessor from './imageProcessor';
 
 const roleData: TokenRole[] = RoleData.map((role) => ({
+    ...role,
+    team: role.team as RoleType,
+}));
+
+const fabledData: TokenRole[] = FabledData.map((role) => ({
     ...role,
     team: role.team as RoleType,
 }));
@@ -17,6 +17,11 @@ const getRoleFromRawRole = (rawRole: TokenRole): TokenRole => {
     const role = roleData.find(
         (i) => i.id.toLowerCase() === rawRole.id.replace('_', '').toLowerCase(),
     );
+    const fabled = fabledData.find(
+        (i) => i.id.toLowerCase() === rawRole.id.replace('_', '').toLowerCase(),
+    );
+
+    if (fabled) return { id: fabled.id, team: fabled.team, count: 1 };
 
     if (!role) {
         return rawRole;
@@ -46,7 +51,7 @@ export default class TokensProcessor {
         const colorizedRoles = await Promise.all(
             roles
                 .filter(
-                    (role: ScriptRole) =>
+                    (role: TokenRole) =>
                         role.team !== 'fabled' && role.team !== 'traveler',
                 )
                 .map(async (role: TokenRole): Promise<TokenRole> => {

@@ -1,4 +1,4 @@
-var roleData = require('./data/roles.json');
+var roleData = require('./data/fabled.json');
 var fs = require('fs');
 
 const processor = (roles) => {
@@ -21,7 +21,7 @@ const processor = (roles) => {
 };
 
 fs.writeFile(
-    'src/data/roles-new.json',
+    'src/data/fabled-new.json',
     JSON.stringify(processor(roleData)),
     (err) => {
         console.log(err);
