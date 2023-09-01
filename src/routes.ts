@@ -23,10 +23,12 @@ router.post<never, Buffer, GetScriptBody, never>(
     },
 );
 
-router.post<never, string, any, never>('/tokens', async (_req, res, next) => {
+router.post<never, Buffer, any, never>('/tokens', async (_req, res, next) => {
     try {
         const tokensController = new TokensController();
         const response = await tokensController.GetTokens(_req.body);
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=script.pdf');
         return res.send(response);
     } catch (error) {
         next(error);

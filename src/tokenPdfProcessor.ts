@@ -11,11 +11,6 @@ export default class GetTokensPdfProcessor {
     ): Promise<Buffer> {
         const templatePath = tempPath + path.sep + 'template.html';
         handlebars.registerHelper(
-            'divide',
-            (dividend: number, divisor: number): number =>
-                Math.ceil(dividend / divisor),
-        );
-        handlebars.registerHelper(
             'getRelativePath',
             (filePath: string): string => {
                 if (!filePath) return '';
@@ -27,7 +22,7 @@ export default class GetTokensPdfProcessor {
         );
         const templateFilePath = path.resolve(
             __dirname,
-            './template/script.hbs',
+            './template/tokens.hbs',
         );
         const templateString = fs
             .readFileSync(templateFilePath)
