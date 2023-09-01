@@ -6,6 +6,11 @@ export interface GetScriptBody {
     modern?: boolean;
 }
 
+export interface GetTokensBody {
+    roles: TokenRole[];
+    modern?: boolean;
+}
+
 export interface Role {
     id: string;
     name?: string;
