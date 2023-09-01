@@ -4,7 +4,7 @@ import fs from 'fs';
 import * as puppeteer from 'puppeteer';
 import path from 'path';
 
-export default class PdfProcessor {
+export default class ScriptPdfProcessor {
     public async createScriptPdf(
         scriptData: ScriptData,
         tempPath: string,

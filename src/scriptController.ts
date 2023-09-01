@@ -3,7 +3,7 @@ import { GetScriptBody } from './types';
 import ScriptProcessor from './scriptProcessor';
 import { randomUUID } from 'crypto';
 import fs from 'fs';
-import PdfProcessor from './pdfProcessor';
+import PdfProcessor from './scriptPdfProcessor';
 import path from 'path';
 
 @Route('script')
