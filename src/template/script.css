@@ -19,7 +19,7 @@ body {
     display: grid;
     grid-template-columns: [sideBar] 40px [roles] 1fr;
     grid-template-rows: [header] min-content [content] auto [footer] 40px;
-    background-image: url('../assets/backgrounds/parchment-big.jpg');
+    background-image: url('../assets/backgrounds/parchment.jpg');
     background-size: cover;
     height: 100%;
     width: 100%;
@@ -167,7 +167,7 @@ body {
     display: grid;
     grid-template-columns: [icon] 50px [text] auto;
     grid-template-rows: [text] auto;
-    column-gap: 10px;
+    column-gap: 5px;
 }
 
 .role-icon {
