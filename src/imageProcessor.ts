@@ -50,6 +50,7 @@ export default class ImageProcessor {
         tempPath: string,
         preGen: boolean = false,
         modern: boolean = false,
+        colorize: boolean = true,
     ): Promise<Role> {
         if (!preGen) {
             const preGenPath = modern
@@ -113,16 +114,18 @@ export default class ImageProcessor {
             }
         }
 
-        const roleImage = await sharp(role.image)
-            .resize({ width: 539, height: 539 })
-            .toBuffer();
+        if (colorize) {
+            const roleImage = await sharp(role.image)
+                .resize({ width: 539, height: 539 })
+                .toBuffer();
 
-        await sharp(path.join(__dirname, './assets/textures/Black.png'))
-            .composite([{ input: roleImage, blend: 'dest-in' }])
-            .tint(Color(colour).object())
-            .toFile(imageFilePath);
+            await sharp(path.join(__dirname, './assets/textures/Black.png'))
+                .composite([{ input: roleImage, blend: 'dest-in' }])
+                .tint(Color(colour).object())
+                .toFile(imageFilePath);
+        }
 
-        return { ...role, image: imageFilePath };
+        return { ...role, image: colorize ? imageFilePath : role.image };
     }
 
     public async colourizeCover(
