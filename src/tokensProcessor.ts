@@ -44,23 +44,43 @@ const getRoleFromRawRole = (rawRole: TokenRole): TokenRole => {
 const workOutLayoutSizes = (
     roleTokenSize = defaultTokenSize.role,
     reminderTokenSize = defaultTokenSize.reminder,
-    tokenGutter = defaultTokenSize.gutter,
+    tokenMargin = defaultTokenSize.margin,
 ) => {
-    const columnAmount = 4;
+    const printableAreaWidth = pageSize.width - pageSize.pageMargin * 2;
+    const printableAreaHeight = pageSize.height - pageSize.pageMargin * 2;
     const largeTokenSize =
         roleTokenSize > reminderTokenSize ? roleTokenSize : reminderTokenSize;
     const smallTokenSize =
         reminderTokenSize < roleTokenSize ? reminderTokenSize : roleTokenSize;
-    const columnSize = largeTokenSize;
+    const tokenAreaSize = largeTokenSize + tokenMargin * 2;
+    const columnAmount = Math.floor(printableAreaWidth / tokenAreaSize);
+    const rowAmount = Math.floor(printableAreaHeight / tokenAreaSize);
+    const maxTokensPerPage = columnAmount * rowAmount;
     return {
+        pageHeight: pageSize.height,
+        pageWidth: pageSize.width,
+        printableHeight: printableAreaHeight,
+        printableWidth: printableAreaWidth,
         roleTokenSize,
         reminderTokenSize,
         columnAmount,
-        columnSize,
-        tokenGutter,
+        rowAmount,
+        tokenAreaSize,
+        tokenMargin,
         largeTokenSize,
         smallTokenSize,
+        maxTokensPerPage,
     };
+};
+
+const chunkArray = <T>(arr: Array<T>, size: number): Array<Array<T>> =>
+    arr.length > size
+        ? [arr.slice(0, size), ...chunkArray(arr.slice(size), size)]
+        : [arr];
+
+const layoutTokens = (maxTokensPerPage: number, tokens: TokenRole[]) => {
+    const data = chunkArray(tokens, maxTokensPerPage);
+    return data;
 };
 
 export default class TokensProcessor {
@@ -87,10 +107,14 @@ export default class TokensProcessor {
         );
 
         const layoutSizes = workOutLayoutSizes();
+        const tokenPages = layoutTokens(
+            layoutSizes.maxTokensPerPage,
+            colorizedRoles,
+        );
 
         return {
-            roles: colorizedRoles,
-            ...layoutSizes,
+            layoutSizes,
+            tokenPages,
         };
     }
 }

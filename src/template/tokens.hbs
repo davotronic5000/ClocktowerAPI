@@ -5,24 +5,39 @@
         <link rel="stylesheet" href="../../../src/template/tokens.css" />
     </head>
     <body>
-        <div class="page">
+        {{#each tokenPages}}
+        <div
+            class="page"
+            style="width: {{../layoutSizes.pageWidth}}px; height: {{../layoutSizes.pageHeight}}px;"
+        >
             <div
-                class="tokens"
-                style="grid-gap: {{tokenGutter}}px; grid-template-columns: repeat(auto-fill, {{largeTokenSize}}px);"
+                class="printable-area"
+                style="width: {{../layoutSizes.printableWidth}}px; height: {{../layoutSizes.printableHeight}}px"
             >
-                {{#each roles}}
                 <div
-                    class="token-holder"
-                    style="width: {{../largeTokenSize}}px; height: {{../largeTokenSize}}px"
+                    class="tokens"
+                    style="grid-template-columns: repeat(auto-fill, {{../layoutSizes.tokenAreaSize}}px);"
                 >
-                    <img
-                        src="{{this.image}}"
-                        width="{{../largeTokenSize}}px"
-                        height="{{../largeTokenSize}}px"
-                    />
+                    {{#each this}}
+                    <div
+                        class="token-holder"
+                        style="width: {{../../layoutSizes.tokenAreaSize}}px; height: {{../../layoutSizes.tokenAreaSize}}px;"
+                    >
+                        <div
+                            class="token"
+                            style="width: {{../../layoutSizes.largeTokenSize}}px; height: {{../../layoutSizes.largeTokenSize}}px;"
+                        >
+                            <img
+                                src="{{this.image}}"
+                                width="{{../../layoutSizes.largeTokenSize}}px"
+                                height="{{../../layoutSizes.largeTokenSize}}px"
+                            />
+                        </div>
+                    </div>
+                    {{/each}}
                 </div>
-                {{/each}}
             </div>
         </div>
+        {{/each}}
     </body>
 </html>

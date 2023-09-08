@@ -6,6 +6,7 @@
 }
 body {
     margin: 0;
+    box-sizing: border-box;
 }
 
 .page {
@@ -14,6 +15,12 @@ body {
     height: 1123px;
     width: 794px;
     background-image: url('../assets/backgrounds/parchment.jpg');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.printable-area {
 }
 
 .tokens {
@@ -22,6 +29,12 @@ body {
 }
 
 .token-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.token {
     border: 5px solid black;
     border-radius: 50%;
 }

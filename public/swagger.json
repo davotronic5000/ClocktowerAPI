@@ -107,6 +107,9 @@
 					},
 					"modern": {
 						"type": "boolean"
+					},
+					"colourise": {
+						"type": "boolean"
 					}
 				},
 				"required": [

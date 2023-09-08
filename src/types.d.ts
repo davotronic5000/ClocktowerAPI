@@ -61,14 +61,16 @@ export interface ScriptData {
 }
 
 export interface TokenData {
-    roles: TokenRole[];
-    roleTokenSize: number;
-    reminderTokenSize: number;
-    columnSize: number;
-    columnAmount: number;
-    tokenGutter: number;
-    largeTokenSize: number;
-    smallTokenSize: number;
+    layoutSizes: {
+        roleTokenSize: number;
+        reminderTokenSize: number;
+        tokenAreaSize: number;
+        columnAmount: number;
+        tokenMargin: number;
+        largeTokenSize: number;
+        smallTokenSize: number;
+    };
+    tokenPages: TokenRole[][];
 }
 
 export interface NightOrder {
