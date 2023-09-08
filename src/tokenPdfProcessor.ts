@@ -20,6 +20,9 @@ export default class GetTokensPdfProcessor {
                 return path.relative(tempPath, filePath);
             },
         );
+        handlebars.registerHelper('isRole', (type: 'role' | 'reminder') => {
+            return type === 'role';
+        });
         const templateFilePath = path.resolve(
             __dirname,
             './template/tokens.hbs',

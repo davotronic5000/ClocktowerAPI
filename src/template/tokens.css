@@ -20,11 +20,14 @@ body {
     align-items: center;
 }
 
-.printable-area {
+.tokens {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
 }
 
-.tokens {
-    display: grid;
+.row {
+    display: flex;
     width: 100%;
 }
 

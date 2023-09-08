@@ -314,7 +314,7 @@
         "setup": false,
         "ability": "Each night*, choose a player: they die. If you kill yourself this way, a Minion becomes the Imp.",
         "image": "src/assets/roles/classic/imp.png",
-        "count": 1
+        "count": 4
     },
     {
         "id": "bureaucrat",
@@ -451,7 +451,7 @@
         "otherNight": 9,
         "otherNightReminder": "The previously protected and drunk players lose those markers. The Innkeeper points to two players. Those players are protected. One is drunk.",
         "reminders": [
-            { "text": "Protected", "count": 1 },
+            { "text": "Protected", "count": 2 },
             { "text": "Drunk", "count": 1 }
         ],
         "setup": false,
@@ -545,7 +545,7 @@
         "firstNightReminder": "",
         "otherNight": 0,
         "otherNightReminder": "",
-        "reminders": [{ "text": "Can not die", "count": 1 }],
+        "reminders": [{ "text": "Can not die", "count": 2 }],
         "setup": false,
         "ability": "If both your alive neighbours are good, they can't die.",
         "image": "src/assets/roles/classic/tealady.png",
@@ -744,7 +744,7 @@
         "otherNight": 27,
         "otherNightReminder": "One player that the Shabaloth chose the previous night might be resurrected. The Shabaloth points to two players. Those players die.",
         "reminders": [
-            { "text": "Dead", "count": 1 },
+            { "text": "Dead", "count": 2 },
             { "text": "Alive", "count": 1 }
         ],
         "setup": false,
@@ -761,7 +761,7 @@
         "otherNight": 28,
         "otherNightReminder": "If the Po chose no-one the previous night: The Po points to three players. Otherwise: The Po either shows the 'no' head signal , or points to a player. Chosen players die",
         "reminders": [
-            { "text": "Dead", "count": 1 },
+            { "text": "Dead", "count": 3 },
             { "text": "3 attacks", "count": 1 }
         ],
         "setup": false,
@@ -892,7 +892,7 @@
         "firstNightReminder": "Show the hand signal for the number (0, 1, 2, etc.) of players whose ability malfunctioned due to other abilities.",
         "otherNight": 71,
         "otherNightReminder": "Show the hand signal for the number (0, 1, 2, etc.) of players whose ability malfunctioned due to other abilities.",
-        "reminders": [{ "text": "Abnormal", "count": 1 }],
+        "reminders": [{ "text": "Abnormal", "count": 5 }],
         "setup": false,
         "ability": "Each night, you learn how many players’ abilities worked abnormally (since dawn) due to another character's ability.",
         "image": "src/assets/roles/classic/mathematician.png",
@@ -1013,7 +1013,7 @@
         "firstNightReminder": "",
         "otherNight": 62,
         "otherNightReminder": "If today was the Juggler’s first day: Show the hand signal for the number (0, 1, 2, etc.) of 'Correct' markers. Remove markers.",
-        "reminders": [{ "text": "Correct", "count": 1 }],
+        "reminders": [{ "text": "Correct", "count": 5 }],
         "setup": false,
         "ability": "On your 1st day, publicly guess up to 5 players' characters. That night, you learn how many you got correct.",
         "image": "src/assets/roles/classic/juggler.png",
@@ -1160,7 +1160,7 @@
         "setup": true,
         "ability": "Each night*, choose a player: they die. The 1st Outsider this kills becomes an evil Fang Gu & you die instead. [+1 Outsider]",
         "image": "src/assets/roles/classic/fanggu.png",
-        "count": 1
+        "count": 2
     },
     {
         "id": "vigormortis",
@@ -1172,8 +1172,8 @@
         "otherNightReminder": "The Vigormortis points to a player. That player dies. If a Minion, they keep their ability and one of their Townsfolk neighbours is poisoned.",
         "reminders": [
             { "text": "Dead", "count": 1 },
-            { "text": "Has ability", "count": 1 },
-            { "text": "Poisoned", "count": 1 }
+            { "text": "Has ability", "count": 3 },
+            { "text": "Poisoned", "count": 3 }
         ],
         "setup": true,
         "ability": "Each night*, choose a player: they die. Minions you kill keep their ability & poison 1 Townsfolk neighbour. [−1 Outsider]",
@@ -1190,7 +1190,7 @@
         "otherNightReminder": "The No Dashii points to a player. That player dies.",
         "reminders": [
             { "text": "Dead", "count": 1 },
-            { "text": "Poisoned", "count": 1 }
+            { "text": "Poisoned", "count": 2 }
         ],
         "setup": false,
         "ability": "Each night*, choose a player: they die. Your 2 Townsfolk neighbours are poisoned.",
@@ -1236,7 +1236,7 @@
         "firstNightReminder": "",
         "otherNight": 1,
         "otherNightReminder": "The Harlot points at any player. Then, put the Harlot to sleep. Wake the chosen player, show them the 'This character selected you' token, then the Harlot token. That player either nods their head yes or shakes their head no. If they nodded their head yes, wake the Harlot and show them the chosen player's character token. Then, you may decide that both players die.",
-        "reminders": [{ "text": "Dead", "count": 1 }],
+        "reminders": [{ "text": "Dead", "count": 2 }],
         "setup": false,
         "ability": "Each night*, choose a living player: if they agree, you learn their character, but you both might die.",
         "image": "src/assets/roles/classic/harlot.png",
@@ -1295,7 +1295,7 @@
         "firstNightReminder": "Point to 3 players including one evil player, in no particular order.",
         "otherNight": 0,
         "otherNightReminder": "",
-        "reminders": [{ "text": "Seen", "count": 1 }],
+        "reminders": [{ "text": "Seen", "count": 3 }],
         "setup": false,
         "ability": "You start knowing 3 players, 1 and only 1 of which is evil.",
         "image": "src/assets/roles/classic/noble.png",
@@ -1354,7 +1354,7 @@
         "firstNightReminder": "The Preacher chooses a player. If a Minion is chosen, wake the Minion and show the 'This character selected you' card and then the Preacher token.",
         "otherNight": 7,
         "otherNightReminder": "The Preacher chooses a player. If a Minion is chosen, wake the Minion and show the 'This character selected you' card and then the Preacher token.",
-        "reminders": [{ "text": "At a sermon", "count": 1 }],
+        "reminders": [{ "text": "At a sermon", "count": 4 }],
         "setup": false,
         "ability": "Each night, choose a player: a Minion, if chosen, learns this. All chosen Minions have no ability.",
         "image": "src/assets/roles/classic/preacher.png",
@@ -1430,7 +1430,7 @@
         "firstNightReminder": "Decide the Amnesiac's entire ability. If the Amnesiac's ability causes them to wake tonight: Wake the Amnesiac and run their ability.",
         "otherNight": 5,
         "otherNightReminder": "If the Amnesiac's ability causes them to wake tonight: Wake the Amnesiac and run their ability.",
-        "reminders": [{ "text": "?", "count": 1 }],
+        "reminders": [{ "text": "?", "count": 5 }],
         "setup": false,
         "ability": "You do not know what your ability is. Each day, privately guess what it is: you learn how accurate you are.",
         "image": "src/assets/roles/classic/amnesiac.png",
@@ -1518,7 +1518,7 @@
         "setup": false,
         "ability": "If you die at night, an alive good player becomes a Farmer.",
         "image": "src/assets/roles/classic/farmer.png",
-        "count": 1
+        "count": 4
     },
     {
         "id": "magician",
@@ -1615,7 +1615,7 @@
         "firstNightReminder": "Point to the 2 marked players.",
         "otherNight": 0,
         "otherNightReminder": "",
-        "reminders": [{ "text": "Known", "count": 1 }],
+        "reminders": [{ "text": "Known", "count": 2 }],
         "setup": false,
         "ability": "You start knowing 2 players that are not the Demon.",
         "image": "src/assets/roles/classic/knight.png",
@@ -1957,28 +1957,8 @@
             { "text": "1", "count": 1 },
             { "text": "2", "count": 1 },
             { "text": "3", "count": 1 },
-            { "text": "Chose death", "count": 1 },
-            { "text": "Chose life", "count": 1 }
-        ],
-        "setup": false,
-        "ability": "Each night*, choose 3 players (all players learn who): each silently chooses to live or die, but if all live, all die.",
-        "image": "src/assets/roles/classic/alhadikhia.png",
-        "count": 1
-    },
-    {
-        "id": "al-hadikhia",
-        "name": "Al-Hadikhia",
-        "team": "demon",
-        "firstNight": 0,
-        "firstNightReminder": "",
-        "otherNight": 33,
-        "otherNightReminder": "The Al-Hadikhia chooses 3 players. Announce the first player, wake them to nod yes to live or shake head no to die, kill or resurrect accordingly, then put to sleep and announce the next player. If all 3 are alive after this, all 3 die.",
-        "reminders": [
-            { "text": "1", "count": 1 },
-            { "text": "2", "count": 1 },
-            { "text": "3", "count": 1 },
-            { "text": "Chose death", "count": 1 },
-            { "text": "Chose life", "count": 1 }
+            { "text": "Chose death", "count": 3 },
+            { "text": "Chose life", "count": 3 }
         ],
         "setup": false,
         "ability": "Each night*, choose 3 players (all players learn who): each silently chooses to live or die, but if all live, all die.",
@@ -1994,13 +1974,13 @@
         "otherNight": 34,
         "otherNightReminder": "Choose a player, that player dies.",
         "reminders": [
-            { "text": "Dead", "count": 1 },
+            { "text": "Dead", "count": 3 },
             { "text": "About to die", "count": 1 }
         ],
         "setup": true,
         "ability": "Each night*, a player might die. Executions fail if only evil voted. You register as a Minion too. [Most players are Legion]",
         "image": "src/assets/roles/classic/legion.png",
-        "count": 11
+        "count": 12
     },
     {
         "id": "leviathan",
@@ -2035,7 +2015,7 @@
         "setup": true,
         "ability": "Nominees die, but may nominate again immediately (on day 3, they must). After day 3, evil wins. [All Minions are Riot]",
         "image": "src/assets/roles/classic/riot.png",
-        "count": 1
+        "count": 4
     },
     {
         "id": "gangster",

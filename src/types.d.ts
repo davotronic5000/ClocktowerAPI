@@ -60,17 +60,43 @@ export interface ScriptData {
     coverImage: string;
 }
 
+export interface TokenInfo {
+    id: string;
+    image?: string;
+    name?: string;
+    leaves: {
+        firstNight: boolean;
+        otherNight: boolean;
+        setup: boolean;
+        reminders: number;
+    };
+}
+
+export interface LayoutToken {
+    type: 'role' | 'reminder';
+    id: string;
+    text?: string;
+}
+
+export type PageLayout = LayoutToken[][][];
+
 export interface TokenData {
     layoutSizes: {
-        roleTokenSize: number;
-        reminderTokenSize: number;
-        tokenAreaSize: number;
-        columnAmount: number;
-        tokenMargin: number;
-        largeTokenSize: number;
-        smallTokenSize: number;
+        role: {
+            tokenSize: number;
+            tokenAreaSize: number;
+        };
+        reminder: {
+            tokenSize: number;
+            tokenAreaSize: number;
+        };
+        pageHeight: number;
+        pageWidth: number;
+        printableHeight: number;
+        printableWidth: number;
     };
-    tokenPages: TokenRole[][];
+    tokenPages: PageLayout;
+    roleData: { [key: string]: TokenInfo };
 }
 
 export interface NightOrder {
