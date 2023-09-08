@@ -243,7 +243,7 @@ body {
     display: grid;
     grid-column-start: 2;
     grid-column-end: -1;
-    grid-template-columns: [icon] 35px [name] 1fr [ability] auto;
+    grid-template-columns: [icon] 35px [name] auto [ability] 1fr;
     margin-top: 10px;
     margin-left: 10px;
 }

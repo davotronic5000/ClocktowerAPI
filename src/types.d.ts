@@ -4,6 +4,7 @@ export interface GetScriptBody {
     type: ScriptType;
     roles: ScriptRole[];
     modern?: boolean;
+    colourise?: boolean;
 }
 
 export interface GetTokensBody {

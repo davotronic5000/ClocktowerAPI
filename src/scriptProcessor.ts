@@ -78,6 +78,7 @@ export default class ScriptProcessor {
                         tempPath,
                         false,
                         model.modern,
+                        model.colourise,
                     );
                 }),
         );
