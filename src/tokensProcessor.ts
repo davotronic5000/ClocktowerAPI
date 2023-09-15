@@ -46,6 +46,7 @@ const getRoleFromRawRole = (rawRole: TokenRole): TokenRole => {
         firstNight: rawRole.firstNight || role.firstNight,
         otherNight: rawRole.otherNight || role.otherNight,
         reminders: rawRole.reminders || role.reminders,
+        setup: rawRole.setup || role.setup,
         colour: rawRole.colour,
         count: rawRole.count || role.count,
     };
@@ -86,7 +87,7 @@ const workOutLayoutSizes = ({
                 roleMidPoint,
                 roleMidPoint,
                 roleCircleSize,
-                90,
+                135,
             ),
             imageSize: tokens.role.size - tokens.role.imageMarginX * 2,
             textMargin: tokens.role.imageMarginY,
@@ -219,6 +220,7 @@ export default class TokensProcessor {
             layoutSizes,
             tokenPages: tokenPages.pageLayout,
             roleData: tokenPages.roles,
+            styles: defaultTokenSize.styles,
         };
     }
 }

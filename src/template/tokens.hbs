@@ -4,6 +4,23 @@
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="../../../src/template/tokens.css" />
     </head>
+    <style>
+        .token-text {
+            fill: {{styles.fontColour}};
+        }
+        .reminder-pips {
+            fill: {{styles.reminder.colour}};
+        }
+        .first-night-pip {
+            fill: {{styles.firstNight.colour}};
+        }
+        .other-night-pip {
+            fill: {{styles.otherNight.colour}};
+        }
+        .setup-pip {
+            fill: {{styles.setup.colour}};
+        }
+    </style>
     <body>
         {{#each tokenPages as | page |}}
         <div
@@ -41,12 +58,48 @@
                                             id="layout-circle-role"
                                         />
                                     </defs>
-                                    <text class="token-text">
+                                    <text class="token-text name">
                                         <textPath
                                             xlink:href="#layout-circle-role"
-                                            startOffset="50%"
+                                            startOffset="37.5%"
                                         >
                                             {{name}}
+                                        </textPath>
+                                    </text>
+                                    <text class="token-text reminder-pips">
+                                        <textPath
+                                            xlink:href="#layout-circle-role"
+                                            startOffset="87.5%"
+                                        >
+                                            {{{reminderPips leaves.reminders
+                                            ../../../../styles.reminder.icon}}}
+                                        </textPath>
+                                    </text>
+                                    <text class="token-text first-night-pip">
+                                        <textPath
+                                            xlink:href="#layout-circle-role"
+                                            startOffset="12.5%"
+                                        >
+                                            {{#if
+                                            leaves.firstNight}}{{{../../../../styles.firstNight.icon}}}{{/if}}
+                                        </textPath>
+                                    </text>
+                                    <text class="token-text other-night-pip">
+                                        <textPath
+                                            xlink:href="#layout-circle-role"
+                                            startOffset="62.5%"
+                                        >
+                                            {{#if
+                                            leaves.otherNight}}{{{../../../../styles.otherNight.icon}}}{{/if}}
+                                        </textPath>
+                                    </text>
+                                    <text class="token-text setup-pip">
+                                        <textPath
+                                            xlink:href="#layout-circle-role"
+                                            startOffset="75%"
+                                        >
+                                            {{#if
+                                            leaves.setup}}{{{../../../../styles.setup.icon}}}{{/if}}
                                         </textPath>
                                     </text>
                                     <image

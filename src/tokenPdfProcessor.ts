@@ -27,6 +27,16 @@ export default class GetTokensPdfProcessor {
         handlebars.registerHelper('isRole', (type: 'role' | 'reminder') => {
             return type === 'role';
         });
+        handlebars.registerHelper(
+            'reminderPips',
+            (amount: number, pip: string) => {
+                let pips = '';
+                for (let i = amount; i > 0; i--) {
+                    pips += pip;
+                }
+                return pips;
+            },
+        );
         const templateFilePath = path.resolve(
             __dirname,
             './template/tokens.hbs',

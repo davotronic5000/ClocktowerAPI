@@ -19,4 +19,23 @@ export const defaultTokenSize: TokenProcessingVariables = {
             imageMarginY: 5,
         },
     },
+    styles: {
+        fontColour: '#262626',
+        setup: {
+            icon: '&#10010;',
+            colour: ' #cc0000',
+        },
+        firstNight: {
+            icon: '&#10038;',
+            colour: '#262626',
+        },
+        otherNight: {
+            icon: '&#10038;',
+            colour: '#262626',
+        },
+        reminder: {
+            icon: '&#10038;',
+            colour: '#262626',
+        },
+    },
 };

@@ -85,6 +85,11 @@ export interface TokenProcessingSize {
     imageMarginX: number;
     imageMarginY: number;
 }
+
+export interface TokenProcessingStyleData {
+    icon: string;
+    colour: string;
+}
 export interface TokenProcessingVariables {
     page: {
         height: number;
@@ -95,6 +100,13 @@ export interface TokenProcessingVariables {
         margin: number;
         role: TokenProcessingSize;
         reminder: TokenProcessingSize;
+    };
+    styles: {
+        fontColour: string;
+        firstNight: TokenProcessingStyleData;
+        otherNight: TokenProcessingStyleData;
+        setup: TokenProcessingStyleData;
+        reminder: TokenProcessingStyleData;
     };
 }
 
@@ -115,6 +127,12 @@ export interface TokenData {
         pageWidth: number;
         printableHeight: number;
         printableWidth: number;
+    };
+    styles: {
+        fontColour: string;
+        firstNight: TokenProcessingStyleData;
+        otherNight: TokenProcessingStyleData;
+        setup: TokenProcessingStyleData;
     };
     tokenPages: PageLayout;
     roleData: { [key: string]: TokenInfo };
