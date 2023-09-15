@@ -85,10 +85,12 @@ export interface TokenData {
         role: {
             tokenSize: number;
             tokenAreaSize: number;
+            layoutCirclePath: string;
         };
         reminder: {
             tokenSize: number;
             tokenAreaSize: number;
+            layoutCirclePath: string;
         };
         pageHeight: number;
         pageWidth: number;

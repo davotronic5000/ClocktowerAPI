@@ -41,3 +41,9 @@ body {
     border: 5px solid black;
     border-radius: 50%;
 }
+
+.token-text {
+    font-family: Old Standard;
+    font-weight: 900;
+    text-transform: uppercase;
+}

@@ -56,6 +56,8 @@ const workOutLayoutSizes = (
 ): TokenData['layoutSizes'] => {
     const printableAreaWidth = pageSize.width - pageSize.pageMargin * 2;
     const printableAreaHeight = pageSize.height - pageSize.pageMargin * 2;
+    const roleCircleSize = (roleTokenSize - 10) / 2;
+    const reminderCircleSize = (reminderTokenSize - 5) / 2;
     return {
         pageHeight: pageSize.height,
         pageWidth: pageSize.width,
@@ -64,10 +66,26 @@ const workOutLayoutSizes = (
         role: {
             tokenSize: roleTokenSize,
             tokenAreaSize: roleTokenSize + tokenMargin * 2,
+            layoutCirclePath: `
+            M ${roleTokenSize / 2} ${roleTokenSize / 2}
+            m ${roleCircleSize}, 0
+            a ${roleCircleSize},${roleCircleSize} 0 1,0 -${roleCircleSize * 2},0
+            a ${roleCircleSize},${roleCircleSize} 0 1,0  ${roleCircleSize * 2},0
+            `,
         },
         reminder: {
             tokenSize: reminderTokenSize,
             tokenAreaSize: reminderTokenSize + tokenMargin * 2,
+            layoutCirclePath: `
+            M ${reminderTokenSize / 2} ${reminderTokenSize / 2}
+            m ${reminderCircleSize}, 0
+            a ${reminderCircleSize},${reminderCircleSize} 0 1,0 -${
+                reminderCircleSize * 2
+            },0
+            a ${reminderCircleSize},${reminderCircleSize} 0 1,0  ${
+                reminderCircleSize * 2
+            },0
+            `,
         },
     };
 };

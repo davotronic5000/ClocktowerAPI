@@ -20,6 +20,10 @@ export default class GetTokensPdfProcessor {
                 return path.relative(tempPath, filePath);
             },
         );
+        handlebars.registerHelper(
+            'divide',
+            (dividend: number, divisor: number): number => dividend / divisor,
+        );
         handlebars.registerHelper('isRole', (type: 'role' | 'reminder') => {
             return type === 'role';
         });

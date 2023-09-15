@@ -27,11 +27,32 @@
                                 style="width: {{../../../layoutSizes.role.tokenSize}}px; height: {{../../../layoutSizes.role.tokenSize}}px;"
                             >
                                 {{#with (lookup ../../../roleData [id])}}
-                                <img
-                                    src="{{image}}"
+                                <svg
                                     width="{{../../../../layoutSizes.role.tokenSize}}px"
                                     height="{{../../../../layoutSizes.role.tokenSize}}px"
-                                />
+                                    viewbox="0 0 {{../../../../layoutSizes.role.tokenSize}} {{../../../../layoutSizes.role.tokenSize}}"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <defs>
+                                        <path
+                                            d="{{../../../../layoutSizes.role.layoutCirclePath}}"
+                                            stroke="black"
+                                            stroke-width="3"
+                                            fill="transparent"
+                                            id="layout-circle"
+                                        />
+                                    </defs>
+                                    <text class="token-text">
+                                        <textPath xlink:href="#layout-circle">
+                                            {{name}}
+                                        </textPath>
+                                    </text>
+                                    <image
+                                        href="{{image}}"
+                                        width="80%"
+                                        height="80%"
+                                    />
+                                </svg>
                                 {{/with}}
                             </div>
                         </div>
@@ -45,11 +66,17 @@
                                 style="width: {{../../../layoutSizes.reminder.tokenSize}}px; height: {{../../../layoutSizes.reminder.tokenSize}}px;"
                             >
                                 {{#with (lookup ../../../roleData [id])}}
-                                <img
-                                    src="{{image}}"
+                                <svg
                                     width="{{../../../../layoutSizes.reminder.tokenSize}}px"
                                     height="{{../../../../layoutSizes.reminder.tokenSize}}px"
-                                />
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <image
+                                        href="{{image}}"
+                                        width="{{../../../../layoutSizes.reminder.tokenSize}}px"
+                                        height="{{../../../../layoutSizes.reminder.tokenSize}}px"
+                                    />
+                                </svg>
                                 {{/with}}
                             </div>
                         </div>
