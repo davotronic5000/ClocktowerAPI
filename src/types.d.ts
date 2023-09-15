@@ -80,18 +80,37 @@ export interface LayoutToken {
 
 export type PageLayout = LayoutToken[][][];
 
+export interface TokenProcessingSize {
+    size: number;
+    imageMarginX: number;
+    imageMarginY: number;
+}
+export interface TokenProcessingVariables {
+    page: {
+        height: number;
+        width: number;
+        margin: number;
+    };
+    tokens: {
+        margin: number;
+        role: TokenProcessingSize;
+        reminder: TokenProcessingSize;
+    };
+}
+
+export interface TokenSizeData {
+    tokenSize: number;
+    tokenAreaSize: number;
+    layoutCirclePath: string;
+    imageSize: number;
+    textMargin: number;
+    imageMargin: number;
+}
+
 export interface TokenData {
     layoutSizes: {
-        role: {
-            tokenSize: number;
-            tokenAreaSize: number;
-            layoutCirclePath: string;
-        };
-        reminder: {
-            tokenSize: number;
-            tokenAreaSize: number;
-            layoutCirclePath: string;
-        };
+        role: TokenSizeData;
+        reminder: TokenSizeData;
         pageHeight: number;
         pageWidth: number;
         printableHeight: number;

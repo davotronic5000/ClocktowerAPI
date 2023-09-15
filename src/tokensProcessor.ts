@@ -8,9 +8,11 @@ import {
     TokenInfo,
     PageLayout,
     LayoutToken,
+    TokenProcessingVariables,
 } from './types';
 import ImageProcessor from './imageProcessor';
-import { defaultTokenSize, pageSize } from './global-variables';
+import { defaultTokenSize } from './global-variables';
+import { token } from 'morgan';
 
 const roleData: TokenRole[] = RoleData.map((role) => ({
     ...role,
@@ -49,43 +51,59 @@ const getRoleFromRawRole = (rawRole: TokenRole): TokenRole => {
     };
 };
 
-const workOutLayoutSizes = (
-    roleTokenSize = defaultTokenSize.role,
-    reminderTokenSize = defaultTokenSize.reminder,
-    tokenMargin = defaultTokenSize.margin,
-): TokenData['layoutSizes'] => {
-    const printableAreaWidth = pageSize.width - pageSize.pageMargin * 2;
-    const printableAreaHeight = pageSize.height - pageSize.pageMargin * 2;
-    const roleCircleSize = (roleTokenSize - 10) / 2;
-    const reminderCircleSize = (reminderTokenSize - 5) / 2;
+const createCircle = (cx: number, cy: number, r: number, deg: number) => {
+    var theta = (deg * Math.PI) / 180,
+        dx = r * Math.cos(theta),
+        dy = -r * Math.sin(theta);
+    return `
+        M ${cx} ${cy}
+        m ${dx},${dy}
+        a ${r},${r} 0 1,0 ${-2 * dx},${-2 * dy}
+        a ${r},${r} 0 1,0 ${2 * dx},${2 * dy}
+    `;
+};
+
+const workOutLayoutSizes = ({
+    page,
+    tokens,
+}: TokenProcessingVariables = defaultTokenSize): TokenData['layoutSizes'] => {
+    const printableAreaWidth = page.width - page.margin * 2;
+    const printableAreaHeight = page.height - page.margin * 2;
+    const roleCircleSize = (tokens.role.size - tokens.role.imageMarginY) / 2;
+    const roleMidPoint = tokens.role.size / 2;
+    const reminderCircleSize =
+        (tokens.reminder.size - tokens.reminder.imageMarginY) / 2;
+    const reminderMidPoint = tokens.reminder.size / 2;
     return {
-        pageHeight: pageSize.height,
-        pageWidth: pageSize.width,
+        pageHeight: page.height,
+        pageWidth: page.width,
         printableHeight: printableAreaHeight,
         printableWidth: printableAreaWidth,
         role: {
-            tokenSize: roleTokenSize,
-            tokenAreaSize: roleTokenSize + tokenMargin * 2,
-            layoutCirclePath: `
-            M ${roleTokenSize / 2} ${roleTokenSize / 2}
-            m ${roleCircleSize}, 0
-            a ${roleCircleSize},${roleCircleSize} 0 1,0 -${roleCircleSize * 2},0
-            a ${roleCircleSize},${roleCircleSize} 0 1,0  ${roleCircleSize * 2},0
-            `,
+            tokenSize: tokens.role.size,
+            tokenAreaSize: tokens.role.size + tokens.margin * 2,
+            layoutCirclePath: createCircle(
+                roleMidPoint,
+                roleMidPoint,
+                roleCircleSize,
+                90,
+            ),
+            imageSize: tokens.role.size - tokens.role.imageMarginX * 2,
+            textMargin: tokens.role.imageMarginY,
+            imageMargin: tokens.role.imageMarginX,
         },
         reminder: {
-            tokenSize: reminderTokenSize,
-            tokenAreaSize: reminderTokenSize + tokenMargin * 2,
-            layoutCirclePath: `
-            M ${reminderTokenSize / 2} ${reminderTokenSize / 2}
-            m ${reminderCircleSize}, 0
-            a ${reminderCircleSize},${reminderCircleSize} 0 1,0 -${
-                reminderCircleSize * 2
-            },0
-            a ${reminderCircleSize},${reminderCircleSize} 0 1,0  ${
-                reminderCircleSize * 2
-            },0
-            `,
+            tokenSize: tokens.reminder.size,
+            tokenAreaSize: tokens.reminder.size + tokens.margin * 2,
+            layoutCirclePath: createCircle(
+                reminderMidPoint,
+                reminderMidPoint,
+                reminderCircleSize,
+                90,
+            ),
+            imageSize: tokens.reminder.size - tokens.reminder.imageMarginX * 2,
+            textMargin: tokens.reminder.imageMarginY,
+            imageMargin: tokens.reminder.imageMarginX,
         },
     };
 };

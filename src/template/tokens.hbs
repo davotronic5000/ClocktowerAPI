@@ -17,13 +17,14 @@
                 <div class="tokens">
                     {{#each page as | row |}}
                     <div class="row">
-                        {{#each row as | token |}} {{#if (isRole token.type)}}
+                        {{#each row as | token |}}{{#if (isRole token.type)}}
+
                         <div
                             class="token-holder"
                             style="width: {{../../../layoutSizes.role.tokenAreaSize}}px; height: {{../../../layoutSizes.role.tokenAreaSize}}px;"
                         >
                             <div
-                                class="token"
+                                class="token role"
                                 style="width: {{../../../layoutSizes.role.tokenSize}}px; height: {{../../../layoutSizes.role.tokenSize}}px;"
                             >
                                 {{#with (lookup ../../../roleData [id])}}
@@ -36,21 +37,24 @@
                                     <defs>
                                         <path
                                             d="{{../../../../layoutSizes.role.layoutCirclePath}}"
-                                            stroke="black"
-                                            stroke-width="3"
                                             fill="transparent"
-                                            id="layout-circle"
+                                            id="layout-circle-role"
                                         />
                                     </defs>
                                     <text class="token-text">
-                                        <textPath xlink:href="#layout-circle">
+                                        <textPath
+                                            xlink:href="#layout-circle-role"
+                                            startOffset="50%"
+                                        >
                                             {{name}}
                                         </textPath>
                                     </text>
                                     <image
                                         href="{{image}}"
-                                        width="80%"
-                                        height="80%"
+                                        width="{{../../../../layoutSizes.role.imageSize}}px"
+                                        height="{{../../../../layoutSizes.role.imageSize}}px"
+                                        x="{{../../../../layoutSizes.role.imageMargin}}"
+                                        y="{{../../../../layoutSizes.role.textMargin}}"
                                     />
                                 </svg>
                                 {{/with}}
@@ -62,22 +66,52 @@
                             style="width: {{../../../layoutSizes.reminder.tokenAreaSize}}px; height: {{../../../layoutSizes.reminder.tokenAreaSize}}px;"
                         >
                             <div
-                                class="token"
+                                class="token reminder"
                                 style="width: {{../../../layoutSizes.reminder.tokenSize}}px; height: {{../../../layoutSizes.reminder.tokenSize}}px;"
                             >
-                                {{#with (lookup ../../../roleData [id])}}
                                 <svg
-                                    width="{{../../../../layoutSizes.reminder.tokenSize}}px"
-                                    height="{{../../../../layoutSizes.reminder.tokenSize}}px"
+                                    width="{{../../../layoutSizes.reminder.tokenSize}}px"
+                                    height="{{../../../layoutSizes.reminder.tokenSize}}px"
+                                    viewbox="0 0 {{../../../layoutSizes.reminder.tokenSize}} {{../../../../layoutSizes.reminder.tokenSize}}"
                                     xmlns="http://www.w3.org/2000/svg"
                                 >
+                                    <defs>
+                                        <path
+                                            d="{{../../../layoutSizes.reminder.layoutCirclePath}}"
+                                            fill="transparent"
+                                            id="layout-circle-reminder"
+                                        />
+                                    </defs>
+                                    <text
+                                        class="token-text reminder"
+                                        style="font-size: 10px"
+                                    >
+                                        <textPath
+                                            xlink:href="#layout-circle-reminder"
+                                            startOffset="50%"
+                                        >
+                                            {{text}}
+                                        </textPath>
+                                    </text>
+                                    {{#with (lookup ../../../roleData [id])}}
                                     <image
                                         href="{{image}}"
-                                        width="{{../../../../layoutSizes.reminder.tokenSize}}px"
-                                        height="{{../../../../layoutSizes.reminder.tokenSize}}px"
+                                        width="{{../../../../layoutSizes.reminder.imageSize}}px"
+                                        height="{{../../../../layoutSizes.reminder.imageSize}}px"
+                                        x="{{../../../../layoutSizes.reminder.imageMargin}}"
+                                        y="{{../../../../layoutSizes.reminder.textMargin}}"
                                     />
+                                    {{/with}}
                                 </svg>
+                                {{!-- {{#with (lookup ../../../roleData [id])}}
+                                <img
+                                    src="{{image}}"
+                                    width="{{divide ../../../../layoutSizes.reminder.tokenSize 2}}"
+                                    height="{{divide ../../../../layoutSizes.reminder.tokenSize 2}}"
+                                />
                                 {{/with}}
+                                <div class="reminder-text">{{text}}</div>
+                                --}}
                             </div>
                         </div>
 
