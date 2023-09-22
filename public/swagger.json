@@ -184,6 +184,159 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"TokenProcessingSize": {
+				"properties": {
+					"size": {
+						"type": "number",
+						"format": "double"
+					},
+					"imageMarginX": {
+						"type": "number",
+						"format": "double"
+					},
+					"imageMarginY": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"size",
+					"imageMarginX",
+					"imageMarginY"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TokenProcessingStyleData": {
+				"properties": {
+					"icon": {
+						"type": "string"
+					},
+					"colour": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"icon",
+					"colour"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"BorderStyles": {
+				"properties": {
+					"colour": {
+						"type": "string"
+					},
+					"alpha": {
+						"type": "number",
+						"format": "double"
+					},
+					"circleBorder": {
+						"type": "boolean"
+					},
+					"squareBorder": {
+						"type": "boolean"
+					},
+					"thickness": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"colour",
+					"alpha",
+					"circleBorder",
+					"squareBorder",
+					"thickness"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TokenProcessingVariables": {
+				"properties": {
+					"page": {
+						"properties": {
+							"margin": {
+								"type": "number",
+								"format": "double"
+							},
+							"width": {
+								"type": "number",
+								"format": "double"
+							},
+							"height": {
+								"type": "number",
+								"format": "double"
+							}
+						},
+						"required": [
+							"margin",
+							"width",
+							"height"
+						],
+						"type": "object"
+					},
+					"tokens": {
+						"properties": {
+							"reminder": {
+								"$ref": "#/components/schemas/TokenProcessingSize"
+							},
+							"role": {
+								"$ref": "#/components/schemas/TokenProcessingSize"
+							},
+							"margin": {
+								"type": "number",
+								"format": "double"
+							}
+						},
+						"required": [
+							"reminder",
+							"role",
+							"margin"
+						],
+						"type": "object"
+					},
+					"styles": {
+						"properties": {
+							"border": {
+								"$ref": "#/components/schemas/BorderStyles"
+							},
+							"reminder": {
+								"$ref": "#/components/schemas/TokenProcessingStyleData"
+							},
+							"setup": {
+								"$ref": "#/components/schemas/TokenProcessingStyleData"
+							},
+							"otherNight": {
+								"$ref": "#/components/schemas/TokenProcessingStyleData"
+							},
+							"firstNight": {
+								"$ref": "#/components/schemas/TokenProcessingStyleData"
+							},
+							"fontColour": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"border",
+							"reminder",
+							"setup",
+							"otherNight",
+							"firstNight",
+							"fontColour"
+						],
+						"type": "object"
+					}
+				},
+				"required": [
+					"page",
+					"tokens",
+					"styles"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"GetTokensBody": {
 				"properties": {
 					"roles": {
@@ -195,21 +348,17 @@
 					"modern": {
 						"type": "boolean"
 					},
-					"roleTokenSize": {
-						"type": "number",
-						"format": "double"
+					"tokenProcessingSettings": {
+						"$ref": "#/components/schemas/TokenProcessingVariables"
 					},
-					"reminderTokenSize": {
-						"type": "number",
-						"format": "double"
-					},
-					"tokenGutter": {
-						"type": "number",
-						"format": "double"
+					"name": {
+						"type": "string"
 					}
 				},
 				"required": [
-					"roles"
+					"roles",
+					"tokenProcessingSettings",
+					"name"
 				],
 				"type": "object",
 				"additionalProperties": false
