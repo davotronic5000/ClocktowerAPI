@@ -248,6 +248,7 @@ export default class TokensProcessor {
             roleData: tokenPages.roles,
             styles: model.tokenProcessingSettings.styles,
             name: model.name || 'Custom Script',
+            lowInk: model.lowInk,
         };
     }
 }

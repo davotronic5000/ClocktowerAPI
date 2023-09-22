@@ -5,6 +5,11 @@
         <link rel="stylesheet" href="../../../src/template/tokens.css" />
     </head>
     <style>
+        {{#if lowInk}}
+        .page {
+            background-image: none;
+        }
+        {{/if}}
         .token-text {
             fill: {{styles.fontColour}};
         }        .reminder-pips {

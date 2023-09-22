@@ -12,6 +12,7 @@ export interface GetTokensBody {
     modern?: boolean;
     tokenProcessingSettings: TokenProcessingVariables;
     name: string;
+    lowInk: boolean;
 }
 
 export interface Role {
@@ -147,6 +148,7 @@ export interface TokenData {
     tokenPages: PageLayout;
     roleData: { [key: string]: TokenInfo };
     name: string;
+    lowInk: boolean;
 }
 
 export interface NightOrder {
