@@ -353,12 +353,16 @@
 					},
 					"name": {
 						"type": "string"
+					},
+					"lowInk": {
+						"type": "boolean"
 					}
 				},
 				"required": [
 					"roles",
 					"tokenProcessingSettings",
-					"name"
+					"name",
+					"lowInk"
 				],
 				"type": "object",
 				"additionalProperties": false

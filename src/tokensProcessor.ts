@@ -102,8 +102,8 @@ const workOutLayoutSizes = ({
                 tokens.role.size -
                 tokens.role.imageMarginX * 2 -
                 (styles.border.squareBorder ? styles.border.thickness * 2 : 0),
-            textMargin:
-                tokens.role.imageMarginY +
+            imageYPosition:
+                tokens.role.imageMarginX +
                 (styles.border.squareBorder ? styles.border.thickness : 0),
             imageMargin:
                 tokens.role.imageMarginX +
@@ -125,7 +125,7 @@ const workOutLayoutSizes = ({
                 tokens.reminder.size -
                 tokens.reminder.imageMarginX * 2 -
                 (styles.border.squareBorder ? styles.border.thickness * 2 : 0),
-            textMargin:
+            imageYPosition:
                 tokens.reminder.imageMarginY +
                 (styles.border.squareBorder ? styles.border.thickness : 0),
             imageMargin:
