@@ -12,7 +12,6 @@ import {
 } from './types';
 import ImageProcessor from './imageProcessor';
 import { defaultTokenSize } from './global-variables';
-import { token } from 'morgan';
 
 const roleData: TokenRole[] = RoleData.map((role) => ({
     ...role,
