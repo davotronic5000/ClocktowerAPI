@@ -11,7 +11,6 @@ import {
     TokenProcessingVariables,
 } from './types';
 import ImageProcessor from './imageProcessor';
-import { defaultTokenSize } from './global-variables';
 
 const roleData: TokenRole[] = RoleData.map((role) => ({
     ...role,
@@ -67,7 +66,7 @@ const workOutLayoutSizes = ({
     page,
     tokens,
     styles,
-}: TokenProcessingVariables = defaultTokenSize): TokenData['layoutSizes'] => {
+}: TokenProcessingVariables): TokenData['layoutSizes'] => {
     const printableAreaWidth = page.width - page.margin * 2;
     const printableAreaHeight = page.height - page.margin * 2;
     const roleCircleSize =
@@ -240,14 +239,14 @@ export default class TokensProcessor {
                 }),
         );
 
-        const layoutSizes = workOutLayoutSizes();
+        const layoutSizes = workOutLayoutSizes(model.tokenProcessingSettings);
         const tokenPages = layoutTokens(layoutSizes, colorizedRoles);
 
         return {
             layoutSizes,
             tokenPages: tokenPages.pageLayout,
             roleData: tokenPages.roles,
-            styles: defaultTokenSize.styles,
+            styles: model.tokenProcessingSettings.styles,
         };
     }
 }

@@ -10,9 +10,8 @@ export interface GetScriptBody {
 export interface GetTokensBody {
     roles: TokenRole[];
     modern?: boolean;
-    roleTokenSize?: number;
-    reminderTokenSize?: number;
-    tokenGutter?: number;
+    tokenProcessingSettings: TokenProcessingVariables;
+    name: string;
 }
 
 export interface Role {
