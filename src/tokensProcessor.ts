@@ -47,7 +47,7 @@ const getRoleFromRawRole = (rawRole: TokenRole): TokenRole => {
         reminders: rawRole.reminders || role.reminders,
         setup: rawRole.setup || role.setup,
         colour: rawRole.colour,
-        count: rawRole.count || role.count,
+        count: rawRole.count || role.count || 1,
     };
 };
 
