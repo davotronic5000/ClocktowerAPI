@@ -22,8 +22,17 @@ body {
     width: 794px;
     background-image: url('../assets/backgrounds/parchment.jpg');
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.title {
+    font-family: 'Old Standard TT', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 10px;
+    height: 12.5px;
 }
 
 .tokens {

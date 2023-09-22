@@ -146,6 +146,7 @@ export interface TokenData {
     };
     tokenPages: PageLayout;
     roleData: { [key: string]: TokenInfo };
+    name: string;
 }
 
 export interface NightOrder {

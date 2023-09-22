@@ -41,6 +41,9 @@ export default class GetTokensPdfProcessor {
         handlebars.registerHelper('toRGBA', (hex: string, alpha: number) => {
             return hexToRGBA(hex, alpha);
         });
+        handlebars.registerHelper('inc', function (value: string) {
+            return parseInt(value) + 1;
+        });
         const templateFilePath = path.resolve(
             __dirname,
             './template/tokens.hbs',

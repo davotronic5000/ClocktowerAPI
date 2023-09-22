@@ -68,7 +68,7 @@ const workOutLayoutSizes = ({
     styles,
 }: TokenProcessingVariables): TokenData['layoutSizes'] => {
     const printableAreaWidth = page.width - page.margin * 2;
-    const printableAreaHeight = page.height - page.margin * 2;
+    const printableAreaHeight = page.height - page.margin * 2 - 12.5;
     const roleCircleSize =
         (tokens.role.size -
             tokens.role.imageMarginY -
@@ -247,6 +247,7 @@ export default class TokensProcessor {
             tokenPages: tokenPages.pageLayout,
             roleData: tokenPages.roles,
             styles: model.tokenProcessingSettings.styles,
+            name: model.name || 'Custom Script',
         };
     }
 }
