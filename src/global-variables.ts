@@ -41,7 +41,7 @@ export const defaultTokenSize: TokenProcessingVariables = {
             colour: '#402f03',
             alpha: 0.4,
             circleBorder: true,
-            squareBorder: true,
+            squareBorder: false,
             thickness: 5,
         },
     },
