@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT&display=swap');
+
+@font-face {
+    font-family: 'Osgard Pro';
+    src: url('./OsgardPro.ttf');
+}
+
+*,
+*:before,
+jh *:after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.page {
+    page-break-after: always;
+    page-break-inside: avoid;
+    height: 1123px;
+    width: 794px;
+    background-image: url('../assets/backgrounds/parchment.jpg');
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-family: 'Old Standard TT', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 10px;
+    height: 12.5px;
+}
+
+.tokens {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+}
+
+.token-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.token {
+    border-radius: 50%;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    align-items: center;
+}
+
+.token-text {
+    font-family: 'Old Standard TT', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-anchor: middle;
+    letter-spacing: 1px;
+}
+
+.reminder-text {
+    font-family: 'Old Standard TT', serif;
+    text-transform: uppercase;
+    color: #262626;
+    font-size: 10px;
+    font-weight: 700;
+    text-align: center;
+    padding: 0 5px;
+}

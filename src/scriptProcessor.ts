@@ -2,22 +2,21 @@ import RoleData from './data/roles.json';
 import HatredData from './data/hatred.json';
 import NightInfo from './data/nightInfo.json';
 import FabledData from './data/fabled.json';
-import { GetScriptBody, Role, RoleType, ScriptData } from './types';
+import { GetScriptBody, ScriptRole, RoleType, ScriptData } from './types';
 import ImageProcessor from './imageProcessor';
-import { resolveMx } from 'dns';
 
-const roleData: Role[] = RoleData.map((role) => ({
+const roleData: ScriptRole[] = RoleData.map((role) => ({
     ...role,
     team: role.team as RoleType,
     hatred: HatredData.find((hatred) => hatred.id === role.id)?.hatred,
 }));
 
-const fabledData: Role[] = FabledData.map((role) => ({
+const fabledData: ScriptRole[] = FabledData.map((role) => ({
     ...role,
     team: role.team as RoleType,
 }));
 
-const getRoleFromRawRole = (rawRole: Role): Role => {
+const getRoleFromRawRole = (rawRole: ScriptRole): ScriptRole => {
     const role = roleData.find(
         (i) => i.id.toLowerCase() === rawRole.id.replace('_', '').toLowerCase(),
     );
@@ -35,7 +34,6 @@ const getRoleFromRawRole = (rawRole: Role): Role => {
         id: role.id,
         image: rawRole.image || role.image,
         name: rawRole.name || role.name,
-        edition: rawRole.edition || role.edition,
         team: rawRole.team || role.team,
         firstNight: rawRole.firstNight || role.firstNight,
         firstNightReminder:
@@ -43,8 +41,6 @@ const getRoleFromRawRole = (rawRole: Role): Role => {
         otherNight: rawRole.otherNight || role.otherNight,
         otherNightReminder:
             rawRole.otherNightReminder || role.otherNightReminder,
-        reminders: rawRole.reminders || role.reminders,
-        setup: rawRole.setup || role.setup,
         ability: rawRole.ability || role.ability,
         hatred: rawRole.hatred || role.hatred,
         colour: rawRole.colour,
@@ -65,7 +61,7 @@ export default class ScriptProcessor {
         model: GetScriptBody,
         tempPath: string,
     ): Promise<ScriptData> {
-        const roles: Role[] = model.roles.map((rawRole: Role) =>
+        const roles: ScriptRole[] = model.roles.map((rawRole: ScriptRole) =>
             getRoleFromRawRole(rawRole),
         );
 
@@ -73,10 +69,10 @@ export default class ScriptProcessor {
         const colorizedRoles = await Promise.all(
             roles
                 .filter(
-                    (role: Role) =>
+                    (role: ScriptRole) =>
                         role.team !== 'fabled' && role.team !== 'traveler',
                 )
-                .map(async (role: Role): Promise<Role> => {
+                .map(async (role: ScriptRole): Promise<ScriptRole> => {
                     return await imageProcessor.colourizeRole(
                         role,
                         tempPath,
@@ -87,21 +83,23 @@ export default class ScriptProcessor {
                 }),
         );
 
-        const nightOrderRoles = colorizedRoles.concat(NightInfo as Role[]);
+        const nightOrderRoles = colorizedRoles.concat(
+            NightInfo as ScriptRole[],
+        );
 
         return {
             ...model,
             townsfolk: colorizedRoles.filter(
-                (role: Role) => role.team === 'townsfolk',
+                (role: ScriptRole) => role.team === 'townsfolk',
             ),
             outsiders: colorizedRoles.filter(
-                (role: Role) => role.team === 'outsider',
+                (role: ScriptRole) => role.team === 'outsider',
             ),
             minions: colorizedRoles.filter(
-                (role: Role) => role.team === 'minion',
+                (role: ScriptRole) => role.team === 'minion',
             ),
             demons: colorizedRoles.filter(
-                (role: Role) => role.team === 'demon',
+                (role: ScriptRole) => role.team === 'demon',
             ),
             nightOrder: {
                 firstNight: nightOrderRoles

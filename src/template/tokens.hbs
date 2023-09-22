@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="../../../src/template/tokens.css" />
+    </head>
+    <style>
+        {{#if lowInk}}
+        .page {
+            background-image: none;
+        }
+        {{/if}}
+        .token-text {
+            fill: {{styles.fontColour}};
+        }        .reminder-pips {
+            fill: {{styles.reminder.colour}};
+        }
+        .first-night-pip {
+            fill: {{styles.firstNight.colour}};
+        }
+        .other-night-pip {
+            fill: {{styles.otherNight.colour}};
+        }
+        .setup-pip {
+            fill: {{styles.setup.colour}};
+        }
+        {{#if styles.border.circleBorder}}
+        .token {
+            border: {{styles.border.thickness}}px solid {{toRGBA styles.border.colour styles.border.alpha}}
+        }
+        {{/if}}
+        {{#if styles.border.squareBorder}}
+        .token-square {
+            border: {{styles.border.thickness}}px solid {{toRGBA styles.border.colour styles.border.alpha}}
+        }
+        {{/if}}
+    </style>
+    <body>
+        {{#each tokenPages as | page |}}
+        <div
+            class="page"
+            style="width: {{../layoutSizes/pageWidth}}px; height: {{../layoutSizes.pageHeight}}px;"
+        >
+            <div class="title">
+                {{../name}} - Page: {{inc @index}} of {{../tokenPages.length}}
+            </div>
+            <div
+                class="printable-area"
+                style="width: {{../layoutSizes.printableWidth}}px; height: {{../layoutSizes.printableHeight}}px"
+            >
+                <div class="tokens">
+                    {{#each page as | row |}}
+                    <div class="row">
+                        {{#each row as | token |}}{{#if (isRole token.type)}}
+
+                        <div
+                            class="token-holder"
+                            style="width: {{../../../layoutSizes.role.tokenAreaSize}}px; height: {{../../../layoutSizes.role.tokenAreaSize}}px;"
+                        >
+                            <div
+                                class="token-square"
+                                style="width: {{../../../layoutSizes.role.tokenSquareSize}}px; height: {{../../../layoutSizes.role.tokenSquareSize}}px;"
+                            >
+                                <div
+                                    class="token role"
+                                    style="width: {{../../../layoutSizes.role.tokenSize}}px; height: {{../../../layoutSizes.role.tokenSize}}px;"
+                                >
+                                    {{#with (lookup ../../../roleData [id])}}
+                                    <svg
+                                        width="{{../../../../layoutSizes.role.tokenSize}}px"
+                                        height="{{../../../../layoutSizes.role.tokenSize}}px"
+                                        viewbox="0 0 {{../../../../layoutSizes.role.tokenSize}} {{../../../../layoutSizes.role.tokenSize}}"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <defs>
+                                            <path
+                                                d="{{../../../../layoutSizes.role.layoutCirclePath}}"
+                                                fill="transparent"
+                                                id="layout-circle-role"
+                                            />
+                                        </defs>
+                                        <text class="token-text name">
+                                            <textPath
+                                                xlink:href="#layout-circle-role"
+                                                startOffset="37.5%"
+                                            >
+                                                {{name}}
+                                            </textPath>
+                                        </text>
+                                        <text class="token-text reminder-pips">
+                                            <textPath
+                                                xlink:href="#layout-circle-role"
+                                                startOffset="87.5%"
+                                            >
+                                                {{{reminderPips leaves.reminders
+                                                ../../../../styles.reminder.icon}}}
+                                            </textPath>
+                                        </text>
+                                        <text
+                                            class="token-text first-night-pip"
+                                        >
+                                            <textPath
+                                                xlink:href="#layout-circle-role"
+                                                startOffset="12.5%"
+                                            >
+                                                {{#if
+                                                leaves.firstNight}}{{{../../../../styles.firstNight.icon}}}{{/if}}
+                                            </textPath>
+                                        </text>
+                                        <text
+                                            class="token-text other-night-pip"
+                                        >
+                                            <textPath
+                                                xlink:href="#layout-circle-role"
+                                                startOffset="62.5%"
+                                            >
+                                                {{#if
+                                                leaves.otherNight}}{{{../../../../styles.otherNight.icon}}}{{/if}}
+                                            </textPath>
+                                        </text>
+                                        <text class="token-text setup-pip">
+                                            <textPath
+                                                xlink:href="#layout-circle-role"
+                                                startOffset="75%"
+                                            >
+                                                {{#if
+                                                leaves.setup}}{{{../../../../styles.setup.icon}}}{{/if}}
+                                            </textPath>
+                                        </text>
+                                        <image
+                                            href="{{image}}"
+                                            width="{{../../../../layoutSizes.role.imageSize}}px"
+                                            height="{{../../../../layoutSizes.role.imageSize}}px"
+                                            x="{{../../../../layoutSizes.role.imageMargin}}"
+                                            y="{{../../../../layoutSizes.role.textMargin}}"
+                                        />
+                                    </svg>
+                                    {{/with}}
+                                </div>
+                            </div>
+                        </div>
+                        {{else}}
+                        <div
+                            class="token-holder"
+                            style="width: {{../../../layoutSizes.reminder.tokenAreaSize}}px; height: {{../../../layoutSizes.reminder.tokenAreaSize}}px;"
+                        >
+                            <div
+                                class="token-square"
+                                style="width: {{../../../layoutSizes.reminder.tokenSquareSize}}px; height: {{../../../layoutSizes.reminder.tokenSquareSize}}px;"
+                            >
+                                <div
+                                    class="token reminder"
+                                    style="width: {{../../../layoutSizes.reminder.tokenSize}}px; height: {{../../../layoutSizes.reminder.tokenSize}}px;"
+                                >
+                                    <svg
+                                        width="{{../../../layoutSizes.reminder.tokenSize}}px"
+                                        height="{{../../../layoutSizes.reminder.tokenSize}}px"
+                                        viewbox="0 0 {{../../../layoutSizes.reminder.tokenSize}} {{../../../layoutSizes.reminder.tokenSize}}"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <defs>
+                                            <path
+                                                d="{{../../../layoutSizes.reminder.layoutCirclePath}}"
+                                                fill="transparent"
+                                                id="layout-circle-reminder"
+                                            />
+                                        </defs>
+                                        <text
+                                            class="token-text reminder"
+                                            style="font-size: 10px"
+                                        >
+                                            <textPath
+                                                xlink:href="#layout-circle-reminder"
+                                                startOffset="50%"
+                                            >
+                                                {{text}}
+                                            </textPath>
+                                        </text>
+                                        {{#with (lookup ../../../roleData
+                                        [id])}}
+                                        <image
+                                            href="{{image}}"
+                                            width="{{../../../../layoutSizes.reminder.imageSize}}px"
+                                            height="{{../../../../layoutSizes.reminder.imageSize}}px"
+                                            x="{{../../../../layoutSizes.reminder.imageMargin}}"
+                                            y="{{../../../../layoutSizes.reminder.textMargin}}"
+                                        />
+                                        {{/with}}
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        {{/if}} {{/each}}
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </body>
+</html>

@@ -14,17 +14,6 @@
 					"phobos"
 				]
 			},
-			"RoleType": {
-				"type": "string",
-				"enum": [
-					"townsfolk",
-					"outsider",
-					"minion",
-					"demon",
-					"fabled",
-					"traveler"
-				]
-			},
 			"Hatred": {
 				"properties": {
 					"id": {
@@ -41,15 +30,23 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Role": {
+			"RoleType": {
+				"type": "string",
+				"enum": [
+					"townsfolk",
+					"outsider",
+					"minion",
+					"demon",
+					"fabled",
+					"traveler"
+				]
+			},
+			"ScriptRole": {
 				"properties": {
 					"id": {
 						"type": "string"
 					},
 					"name": {
-						"type": "string"
-					},
-					"edition": {
 						"type": "string"
 					},
 					"team": {
@@ -59,38 +56,23 @@
 						"type": "number",
 						"format": "double"
 					},
-					"firstNightReminder": {
-						"type": "string"
-					},
 					"otherNight": {
 						"type": "number",
 						"format": "double"
 					},
-					"otherNightReminder": {
-						"type": "string"
-					},
-					"reminders": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
-					},
-					"setup": {
-						"type": "boolean"
-					},
-					"ability": {
-						"type": "string"
-					},
 					"image": {
 						"type": "string"
 					},
-					"remindersGlobal": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
-					},
 					"colour": {
+						"type": "string"
+					},
+					"firstNightReminder": {
+						"type": "string"
+					},
+					"otherNightReminder": {
+						"type": "string"
+					},
+					"ability": {
 						"type": "string"
 					},
 					"hatred": {
@@ -119,11 +101,14 @@
 					},
 					"roles": {
 						"items": {
-							"$ref": "#/components/schemas/Role"
+							"$ref": "#/components/schemas/ScriptRole"
 						},
 						"type": "array"
 					},
 					"modern": {
+						"type": "boolean"
+					},
+					"colourise": {
 						"type": "boolean"
 					}
 				},
@@ -132,6 +117,248 @@
 					"colour",
 					"type",
 					"roles"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TokenReminder": {
+				"properties": {
+					"text": {
+						"type": "string"
+					},
+					"count": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"text",
+					"count"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TokenRole": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"team": {
+						"$ref": "#/components/schemas/RoleType"
+					},
+					"firstNight": {
+						"type": "number",
+						"format": "double"
+					},
+					"otherNight": {
+						"type": "number",
+						"format": "double"
+					},
+					"image": {
+						"type": "string"
+					},
+					"colour": {
+						"type": "string"
+					},
+					"reminders": {
+						"items": {
+							"$ref": "#/components/schemas/TokenReminder"
+						},
+						"type": "array"
+					},
+					"setup": {
+						"type": "boolean"
+					},
+					"count": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"id",
+					"count"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TokenProcessingSize": {
+				"properties": {
+					"size": {
+						"type": "number",
+						"format": "double"
+					},
+					"imageMarginX": {
+						"type": "number",
+						"format": "double"
+					},
+					"imageMarginY": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"size",
+					"imageMarginX",
+					"imageMarginY"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TokenProcessingStyleData": {
+				"properties": {
+					"icon": {
+						"type": "string"
+					},
+					"colour": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"icon",
+					"colour"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"BorderStyles": {
+				"properties": {
+					"colour": {
+						"type": "string"
+					},
+					"alpha": {
+						"type": "number",
+						"format": "double"
+					},
+					"circleBorder": {
+						"type": "boolean"
+					},
+					"squareBorder": {
+						"type": "boolean"
+					},
+					"thickness": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"colour",
+					"alpha",
+					"circleBorder",
+					"squareBorder",
+					"thickness"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TokenProcessingVariables": {
+				"properties": {
+					"page": {
+						"properties": {
+							"margin": {
+								"type": "number",
+								"format": "double"
+							},
+							"width": {
+								"type": "number",
+								"format": "double"
+							},
+							"height": {
+								"type": "number",
+								"format": "double"
+							}
+						},
+						"required": [
+							"margin",
+							"width",
+							"height"
+						],
+						"type": "object"
+					},
+					"tokens": {
+						"properties": {
+							"reminder": {
+								"$ref": "#/components/schemas/TokenProcessingSize"
+							},
+							"role": {
+								"$ref": "#/components/schemas/TokenProcessingSize"
+							},
+							"margin": {
+								"type": "number",
+								"format": "double"
+							}
+						},
+						"required": [
+							"reminder",
+							"role",
+							"margin"
+						],
+						"type": "object"
+					},
+					"styles": {
+						"properties": {
+							"border": {
+								"$ref": "#/components/schemas/BorderStyles"
+							},
+							"reminder": {
+								"$ref": "#/components/schemas/TokenProcessingStyleData"
+							},
+							"setup": {
+								"$ref": "#/components/schemas/TokenProcessingStyleData"
+							},
+							"otherNight": {
+								"$ref": "#/components/schemas/TokenProcessingStyleData"
+							},
+							"firstNight": {
+								"$ref": "#/components/schemas/TokenProcessingStyleData"
+							},
+							"fontColour": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"border",
+							"reminder",
+							"setup",
+							"otherNight",
+							"firstNight",
+							"fontColour"
+						],
+						"type": "object"
+					}
+				},
+				"required": [
+					"page",
+					"tokens",
+					"styles"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"GetTokensBody": {
+				"properties": {
+					"roles": {
+						"items": {
+							"$ref": "#/components/schemas/TokenRole"
+						},
+						"type": "array"
+					},
+					"modern": {
+						"type": "boolean"
+					},
+					"tokenProcessingSettings": {
+						"$ref": "#/components/schemas/TokenProcessingVariables"
+					},
+					"name": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"roles",
+					"tokenProcessingSettings",
+					"name"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -176,6 +403,36 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/GetScriptBody"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/tokens": {
+			"post": {
+				"operationId": "GetTokens",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "string",
+									"format": "byte"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/GetTokensBody"
 							}
 						}
 					}

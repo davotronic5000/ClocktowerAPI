@@ -1,20 +1,16 @@
-import { ScriptData } from './types';
 import * as handlebars from 'handlebars';
 import fs from 'fs';
 import * as puppeteer from 'puppeteer';
 import path from 'path';
+import { TokenData } from './types';
+import hexToRGBA from './hex-to-rgba';
 
-export default class PdfProcessor {
-    public async createScriptPdf(
-        scriptData: ScriptData,
+export default class GetTokensPdfProcessor {
+    public async createTokensPdf(
+        tokenData: TokenData,
         tempPath: string,
     ): Promise<Buffer> {
         const templatePath = tempPath + path.sep + 'template.html';
-        handlebars.registerHelper(
-            'divide',
-            (dividend: number, divisor: number): number =>
-                Math.ceil(dividend / divisor),
-        );
         handlebars.registerHelper(
             'getRelativePath',
             (filePath: string): string => {
@@ -25,16 +21,39 @@ export default class PdfProcessor {
                 return path.relative(tempPath, filePath);
             },
         );
+        handlebars.registerHelper(
+            'divide',
+            (dividend: number, divisor: number): number => dividend / divisor,
+        );
+        handlebars.registerHelper('isRole', (type: 'role' | 'reminder') => {
+            return type === 'role';
+        });
+        handlebars.registerHelper(
+            'reminderPips',
+            (amount: number, pip: string) => {
+                let pips = '';
+                for (let i = amount; i > 0; i--) {
+                    pips += pip;
+                }
+                return pips;
+            },
+        );
+        handlebars.registerHelper('toRGBA', (hex: string, alpha: number) => {
+            return hexToRGBA(hex, alpha);
+        });
+        handlebars.registerHelper('inc', function (value: string) {
+            return parseInt(value) + 1;
+        });
         const templateFilePath = path.resolve(
             __dirname,
-            './template/script.hbs',
+            './template/tokens.hbs',
         );
         const templateString = fs
             .readFileSync(templateFilePath)
             .toString('utf-8');
         const template = handlebars.compile(templateString);
 
-        fs.writeFile(templatePath, template(scriptData), () => {});
+        fs.writeFile(templatePath, template(tokenData), () => {});
         const browser = await puppeteer.launch({ headless: 'new' });
         const page = await browser.newPage();
         await page.goto('file:///' + path.resolve(__dirname, templatePath), {
