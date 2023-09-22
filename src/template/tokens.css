@@ -4,9 +4,15 @@
     font-family: 'Osgard Pro';
     src: url('./OsgardPro.ttf');
 }
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    box-sizing: border-box;
 }
 
 .page {
@@ -38,7 +44,6 @@ body {
 }
 
 .token {
-    border: 5px solid black;
     border-radius: 50%;
     display: flex;
     justify-content: start;

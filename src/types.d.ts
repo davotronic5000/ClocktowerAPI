@@ -90,6 +90,14 @@ export interface TokenProcessingStyleData {
     icon: string;
     colour: string;
 }
+
+export interface BorderStyles {
+    colour: string;
+    alpha: number;
+    circleBorder: boolean;
+    squareBorder: boolean;
+    thickness: number;
+}
 export interface TokenProcessingVariables {
     page: {
         height: number;
@@ -107,12 +115,14 @@ export interface TokenProcessingVariables {
         otherNight: TokenProcessingStyleData;
         setup: TokenProcessingStyleData;
         reminder: TokenProcessingStyleData;
+        border: BorderStyles;
     };
 }
 
 export interface TokenSizeData {
     tokenSize: number;
     tokenAreaSize: number;
+    tokenSquareSize: number;
     layoutCirclePath: string;
     imageSize: number;
     textMargin: number;
@@ -133,6 +143,7 @@ export interface TokenData {
         firstNight: TokenProcessingStyleData;
         otherNight: TokenProcessingStyleData;
         setup: TokenProcessingStyleData;
+        border: BorderStyles;
     };
     tokenPages: PageLayout;
     roleData: { [key: string]: TokenInfo };

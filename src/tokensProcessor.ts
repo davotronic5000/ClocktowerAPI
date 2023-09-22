@@ -67,13 +67,21 @@ const createCircle = (cx: number, cy: number, r: number, deg: number) => {
 const workOutLayoutSizes = ({
     page,
     tokens,
+    styles,
 }: TokenProcessingVariables = defaultTokenSize): TokenData['layoutSizes'] => {
     const printableAreaWidth = page.width - page.margin * 2;
     const printableAreaHeight = page.height - page.margin * 2;
-    const roleCircleSize = (tokens.role.size - tokens.role.imageMarginY) / 2;
+    const roleCircleSize =
+        (tokens.role.size -
+            tokens.role.imageMarginY -
+            (styles.border.circleBorder ? styles.border.thickness : 0)) /
+        2;
     const roleMidPoint = tokens.role.size / 2;
     const reminderCircleSize =
-        (tokens.reminder.size - tokens.reminder.imageMarginY) / 2;
+        (tokens.reminder.size -
+            tokens.reminder.imageMarginY -
+            (styles.border.circleBorder ? styles.border.thickness : 0)) /
+        2;
     const reminderMidPoint = tokens.reminder.size / 2;
     return {
         pageHeight: page.height,
@@ -83,28 +91,48 @@ const workOutLayoutSizes = ({
         role: {
             tokenSize: tokens.role.size,
             tokenAreaSize: tokens.role.size + tokens.margin * 2,
+            tokenSquareSize:
+                tokens.role.size +
+                (styles.border.squareBorder ? styles.border.thickness * 2 : 0),
             layoutCirclePath: createCircle(
                 roleMidPoint,
                 roleMidPoint,
                 roleCircleSize,
                 135,
             ),
-            imageSize: tokens.role.size - tokens.role.imageMarginX * 2,
-            textMargin: tokens.role.imageMarginY,
-            imageMargin: tokens.role.imageMarginX,
+            imageSize:
+                tokens.role.size -
+                tokens.role.imageMarginX * 2 -
+                (styles.border.squareBorder ? styles.border.thickness * 2 : 0),
+            textMargin:
+                tokens.role.imageMarginY +
+                (styles.border.squareBorder ? styles.border.thickness : 0),
+            imageMargin:
+                tokens.role.imageMarginX +
+                (styles.border.squareBorder ? styles.border.thickness : 0),
         },
         reminder: {
             tokenSize: tokens.reminder.size,
             tokenAreaSize: tokens.reminder.size + tokens.margin * 2,
+            tokenSquareSize:
+                tokens.reminder.size +
+                (styles.border.squareBorder ? styles.border.thickness * 2 : 0),
             layoutCirclePath: createCircle(
                 reminderMidPoint,
                 reminderMidPoint,
                 reminderCircleSize,
                 90,
             ),
-            imageSize: tokens.reminder.size - tokens.reminder.imageMarginX * 2,
-            textMargin: tokens.reminder.imageMarginY,
-            imageMargin: tokens.reminder.imageMarginX,
+            imageSize:
+                tokens.reminder.size -
+                tokens.reminder.imageMarginX * 2 -
+                (styles.border.squareBorder ? styles.border.thickness * 2 : 0),
+            textMargin:
+                tokens.reminder.imageMarginY +
+                (styles.border.squareBorder ? styles.border.thickness : 0),
+            imageMargin:
+                tokens.reminder.imageMarginX +
+                (styles.border.squareBorder ? styles.border.thickness : 0),
         },
     };
 };

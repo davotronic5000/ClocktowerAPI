@@ -3,6 +3,7 @@ import fs from 'fs';
 import * as puppeteer from 'puppeteer';
 import path from 'path';
 import { TokenData } from './types';
+import hexToRGBA from './hex-to-rgba';
 
 export default class GetTokensPdfProcessor {
     public async createTokensPdf(
@@ -37,6 +38,9 @@ export default class GetTokensPdfProcessor {
                 return pips;
             },
         );
+        handlebars.registerHelper('toRGBA', (hex: string, alpha: number) => {
+            return hexToRGBA(hex, alpha);
+        });
         const templateFilePath = path.resolve(
             __dirname,
             './template/tokens.hbs',
