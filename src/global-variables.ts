@@ -7,15 +7,15 @@ export const defaultTokenSize: TokenProcessingVariables = {
         margin: 38,
     },
     tokens: {
-        margin: 10,
+        margin: 4,
         role: {
-            size: 151,
-            imageMarginX: 10,
-            imageMarginY: 5,
+            size: 170,
+            imageMarginX: 20,
+            imageMarginY: 10,
         },
         reminder: {
-            size: 76,
-            imageMarginX: 10,
+            size: 94.5,
+            imageMarginX: 15,
             imageMarginY: 5,
         },
     },

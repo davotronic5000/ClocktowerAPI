@@ -125,8 +125,8 @@ export interface TokenSizeData {
     tokenSquareSize: number;
     layoutCirclePath: string;
     imageSize: number;
-    textMargin: number;
     imageMargin: number;
+    imageYPosition: number;
 }
 
 export interface TokenData {
