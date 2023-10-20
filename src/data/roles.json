@@ -2038,7 +2038,8 @@
         "reminders": [{ "text": "Dead", "count": 1 }],
         "name": "Ojo",
         "team": "demon",
-        "ability": "Each night*, choose a character: they die. If they are not in play, the Storyteller chooses who dies."
+        "ability": "Each night*, choose a character: they die. If they are not in play, the Storyteller chooses who dies.",
+        "count": 1
     },
     {
         "id": "gangster",
