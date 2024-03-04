@@ -2094,5 +2094,19 @@
         "name": "Kazali",
         "team": "demon",
         "ability": "Each night*, choose a player: they die. [You choose which players are Minions. -? to +? Outsiders]"
+},
+{
+    "id": "yaggabable",
+    "image": "src/assets/roles/classic/yaggabable.png",
+    "firstNight": 2.2,
+    "firstNightReminder": "Give the yaggababble their secret phrase.",
+    "otherNight": 35.1,
+    "otherNightReminder": "Select a number of players to die up to the number of times the Yaggababble said their phrase.",
+"reminders": [{"text":"Dead", "count": 3}],
+    "count": 1,
+    "setup": true,
+    "name": "Yaggabable",
+    "team": "demon",
+    "ability": "You start knowing a secret phrase. For each time you said it publicly today, a player might die."
 }
 ]
